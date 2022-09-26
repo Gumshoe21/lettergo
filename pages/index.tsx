@@ -16,7 +16,10 @@ const Home: NextPage = () => {
 					Ostentatious
 				</div>
 				<div className="flex items-center justify-center flex-col">
-					<input type="text" className="bg-gray-50 border mb-4 rounded-md" />
+					<input
+						type="text"
+						className="p-4 text-gray-900 bg-gray-50 border mb-4 rounded-md"
+					/>
 				</div>
 			</main>
 		</>
