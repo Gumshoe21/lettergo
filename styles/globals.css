@@ -13,3 +13,20 @@ body {
 *::after {
 	box-sizing: border-box;
 }
+
+@layer components {
+   
+  .letters--container {
+    @apply grid p-4 text-center content-center items-center w-full gap-3 grid-cols-6 grid-rows-2 border-4 rounded-lg border-black;
+  }
+  .letters--letter {
+    @apply flex flex-col place-content-center min-h-[100px] rounded-lg text-3xl border-2 border-black;
+  }
+
+  .countdown--container {
+   @apply flex flex-col text-center items-center content-center w-full border-4 rounded-lg border-black py-4 
+  }  
+  .countdown--timer {
+    @apply flex text-6xl; 
+  }
+}
