@@ -29,4 +29,15 @@ body {
   .countdown--timer {
     @apply flex text-6xl; 
   }
+
+  .input--container {
+    @apply flex flex-col text-center items-center content-center w-full border-[.5px] border-gray-900  py-4 gap-4
+  }
+  .input--field {
+    @apply border-black border-2 
+  }
+
+  .input--submit-button {
+    @apply uppercase tracking-widest text-3xl
+  }
 }

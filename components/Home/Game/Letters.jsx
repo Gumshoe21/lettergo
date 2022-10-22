@@ -1,20 +1,19 @@
-const Letters = ({ }) => {
-  return (
-    <div className="letters--container">
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-      <span className='letters--letter'>01</span>
-    </div>
-  )
-}
+import { useState } from 'react';
+
+
+const Letters = ({randomLetters}) => {
+  const [letters, setLetters] = useState(randomLetters)
+	return (
+		<div className="letters--container">
+			{letters.map(letter => (
+				<span key={letter} className="letters--letter">
+					{letter}
+				</span>
+			))}
+		</div>
+	);
+};
+
+
 
 export default Letters;
