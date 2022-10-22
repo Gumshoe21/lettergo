@@ -5,6 +5,9 @@ import Container from '../components/Home/Game/Container'
 import Letters from '../components/Home/Game/Letters'
 import Countdown from '../components/Home/Game/Countdown'
 import Input from '../components/Home/Game/Input'
+import Progress from '../components/Home/Game/Progress'
+import NewGame from '../components/Home/Game/NewGame'
+
 import _ from 'lodash';
 
 const Home = ({randomLetters}: any) => {
@@ -15,6 +18,8 @@ const Home = ({randomLetters}: any) => {
         <Letters randomLetters={randomLetters} />
         <Countdown/>
         <Input/>
+        <Progress />
+        <NewGame/>
       </Container>
 
     </>
