@@ -9,5 +9,14 @@ module.exports = {
       center: true,
       // padding: '2rem',
     },
+    extend: {
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1'}
+        }
+      }
+    }
   },
+
 }

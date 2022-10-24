@@ -1,66 +1,95 @@
-import React from 'react';
 import type { NextPage } from 'next';
-import Navbar from '../components/UI/Navbar'
-import Container from '../components/Home/Game/Container'
-import Letters from '../components/Home/Game/Letters'
-import Countdown from '../components/Home/Game/Countdown'
-import Input from '../components/Home/Game/Input'
-import Progress from '../components/Home/Game/Progress'
-import NewGame from '../components/Home/Game/NewGame'
+import Navbar from '../components/UI/Navbar';
+import Container from '../components/Home/Game/Container';
+import Letters from '../components/Home/Game/Letters';
+import Countdown from '../components/Home/Game/Countdown';
+import Input from '../components/Home/Game/Input';
+import Progress from '../components/Home/Game/Progress';
+import NewGame from '../components/Home/Game/NewGame';
+import { wrapper } from './../store/index';
+import {connect} from "react-redux";
+
+import { selectIsActiveState, setIsActive} from "./../store/slices/gameSlice"
+import { useDispatch,useSelector } from "react-redux";
 
 import _ from 'lodash';
+import WelcomeModal from '../components/Home/Game/WelcomeModal';
 
-const Home = ({randomLetters}: any) => {
-  return (
-    <>
-      <Navbar />
-      <Container>
-        <Letters randomLetters={randomLetters} />
-        <Countdown/>
-        <Input/>
-        <Progress />
-        <NewGame/>
-      </Container>
+const Home= ({ 
+		randomLetters, 
+	}: {
+		randomLetters: string[], 
+	}) => {
 
-    </>
-  )
+		const isActiveState = useSelector(selectIsActiveState)
+	return (
+		<>
+			<Navbar />
+			<Container>
+				<WelcomeModal/>
+				<Letters randomLetters={randomLetters} />
+				<Countdown />
+				<Input />
+				<Progress />
+				<NewGame isActive={isActiveState} />
+				
+			</Container>
+		</>
+	);
 };
-export const getStaticProps = async () => {
-  const alphabet = [
-    'A',
-    'B',
-    'C',
-    'D',
-    'E',
-    'F',
-    'G',
-    'H',
-    'I',
-    'J',
-    'K',
-    'L',
-    'M',
-    'N',
-    'O',
-    'P',
-    'Q',
-    'R',
-    'S',
-    'T',
-    'U',
-    'V',
-    'W',
-    'X',
-    'Y',
-    'Z',
-  ];
 
-  const randomLetters = _.shuffle(alphabet).slice(14, 26);
+export const getServerSideProps= wrapper.getServerSideProps(
 
-return {
-  props: {
-    randomLetters,
-  },
-};
-};
-export default Home;
+  (store) =>
+
+    async ({ params }) => {
+  		//    await store.dispatch(setIsActiveState(true)); 
+ 			console.log("State on server", store.getState());
+			console.log(store)
+			const alphabet: string[] = [
+			'A',
+			'B',
+			'C',
+			'D',
+			'E',
+			'F',
+			'G',
+			'H',
+			'I',
+			'J',
+			'K',
+			'L',
+			'M',
+			'N',
+			'O',
+			'P',
+			'Q',
+			'R',
+			'S',
+			'T',
+			'U',
+			'V',
+			'W',
+			'X',
+			'Y',
+			'Z',
+		];
+
+		const randomLetters: string[] = _.shuffle(alphabet).slice(14, 26);
+      return {
+        props: {
+					randomLetters,
+					isActive:false
+        },
+      };
+    }
+);
+/*k
+export const getStaticProps =wrapper.getStateProps(
+	async () =>
+	store =>
+	async ({ params }) => {
+		;
+	});
+  */
+export default connect()(Home);

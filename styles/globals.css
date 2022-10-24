@@ -8,6 +8,7 @@ body {
 	margin: 0;
 }
 
+
 *,
 *::before,
 *::after {
@@ -15,47 +16,49 @@ body {
 }
 
 @layer components {
-   
+  /* Letters */
   .letters--container {
-    @apply grid p-4 text-center content-center items-center w-full gap-3 grid-cols-6 grid-rows-2 border-4 rounded-lg border-black;
+    @apply grid p-4 text-center content-center items-center w-full gap-2 grid-cols-6 grid-rows-2 ml-0 border-b-2 border-black;
   }
   .letters--letter {
-    @apply flex flex-col place-content-center min-h-[100px] rounded-lg text-3xl border-2 border-black;
+    @apply flex flex-col place-content-center min-h-[100px] text-3xl border-2 border-black;
   }
 
+  /* Countdown */
   .countdown--container {
-   @apply flex flex-col text-center items-center content-center w-full border-4 rounded-lg border-black py-4 
+   @apply py-4 flex flex-col text-center items-center content-center w-full border-b-2 border-black 
   }  
   .countdown--timer {
     @apply flex text-6xl; 
   }
 
+  /* Input */
   .input--container {
-    @apply flex flex-col text-center items-center content-center w-full border-[.5px] border-gray-900  py-4 gap-4
+    @apply flex flex-col text-center items-center content-center border-b-2 border-black py-4 gap-4
   }
   .input--field {
     @apply border-black border-2 
   }
-
   .input--submit-button {
     @apply uppercase tracking-widest text-3xl
   }
 
+  /* Progress */
   .progress--container {
-    @apply flex flex-col items-stretch content-center border-[.5px] border-gray-900
+    @apply flex flex-col items-stretch content-center border-black 
   }
   .progress--manifest {
-    @apply flex flex-col text-center items-stretch content-center border-[.5px] border-gray-900;
+    @apply flex flex-col text-center items-stretch content-center border-[.5px] py-4 border-gray-900;
   }
   .progress--attempted-words {
-
-    @apply break-words grid grid-cols-3  flex-grow text-center items-center content-center border-[.5px] border-gray-900;
+    @apply break-words grid grid-cols-3  flex-grow text-center items-center content-center border-[.5px] border-gray-900 py-4;
   }
+
+  /* New Game Button */
   .new-game--container {
-    @apply flex flex-row content-center justify-center border-[.5px] border-gray-900 py-5
+    @apply bg-[#5a527c] flex flex-row content-center justify-center border-[.5px] border-gray-900 py-5
   }
-
   .new-game--button {
-    @apply h-[50px] border-[.5px] border-gray-900 flex flex-row content-center items-center p-5;
+    @apply h-[50px] border-2 font-semibold text-white flex flex-row content-center items-center p-5 rounded-r-3xl rounded-l-3xl bg-[#5a527c] hover:bg-white hover:text-[#5a527c] hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl 
   }
 }

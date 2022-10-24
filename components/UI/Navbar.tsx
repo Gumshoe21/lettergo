@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import React, { useState } from 'react'
 import Head from 'next/head';
-import Image from 'next/image';
 import styles from '../styles/Home.module.css';
+import Image from 'next/image'
 
 const Navbar: NextPage = () => {
   const [showNav, setShowNav] = useState(false)
@@ -19,7 +19,10 @@ const Navbar: NextPage = () => {
 
           {/* Company name plus svg, left side of nav */}
           <a href="#" className="flex items-center">
-            <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="LetterGo Logo" />
+{            /*
+
+            <Image src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="LetterGo Logo" width='1' height='1' />
+            */}
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">LetterGo</span>
           </a>
 
