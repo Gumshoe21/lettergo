@@ -21,7 +21,7 @@
 		@apply grid text-center p-4 content-center items-center w-full gap-2 grid-cols-6 grid-rows-2 ml-0;
 	}
 	.letters--letter {
-		@apply text-white flex flex-col place-content-center min-h-[100px] text-3xl border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)] hover:bg-[rgb(255,255,255,0.1)];
+		@apply transition-all hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] text-3xl border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)] ;
 	}
 
 	/* Countdown */
