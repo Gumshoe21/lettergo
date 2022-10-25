@@ -8,30 +8,34 @@ import Progress from '../components/Home/Game/Progress';
 import NewGame from '../components/Home/Game/NewGame';
 import { wrapper } from './../store/index';
 import {connect} from "react-redux";
-
 import { selectIsActiveState, setIsActive} from "./../store/slices/gameSlice"
 import { useDispatch,useSelector } from "react-redux";
+import { useEffect } from 'react'
 
 import _ from 'lodash';
 import WelcomeModal from '../components/Home/Game/WelcomeModal';
 
+
 const Home= ({ 
 		randomLetters, 
 	}: {
+
 		randomLetters: string[], 
 	}) => {
 
-		const isActiveState = useSelector(selectIsActiveState)
+
+	const isActiveState = useSelector(selectIsActiveState)
 	return (
 		<>
 			<Navbar />
 			<Container>
-				<WelcomeModal/>
-				<Letters randomLetters={randomLetters} />
-				<Countdown />
-				<Input />
-				<Progress />
+				
 				<NewGame isActive={isActiveState} />
+				<Countdown />
+				<Progress />
+				<WelcomeModal/>
+				<Input />
+				<Letters randomLetters={randomLetters} />
 				
 			</Container>
 		</>
@@ -79,17 +83,10 @@ export const getServerSideProps= wrapper.getServerSideProps(
       return {
         props: {
 					randomLetters,
-					isActive:false
+					isActive:false,
         },
       };
     }
 );
-/*k
-export const getStaticProps =wrapper.getStateProps(
-	async () =>
-	store =>
-	async ({ params }) => {
-		;
-	});
-  */
+
 export default connect()(Home);

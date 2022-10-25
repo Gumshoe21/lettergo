@@ -2,63 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-	padding: 0;
-	margin: 0;
-}
-
-
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
+@layer base {
+	body {
+		margin: 0;
+		padding: 0;
+		@apply bg-neutral-900;
+	}
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
 }
 
 @layer components {
-  /* Letters */
-  .letters--container {
-    @apply grid p-4 text-center content-center items-center w-full gap-2 grid-cols-6 grid-rows-2 ml-0 border-b-2 border-black;
-  }
-  .letters--letter {
-    @apply flex flex-col place-content-center min-h-[100px] text-3xl border-2 border-black;
-  }
+	/* Letters */
+	.letters--container {
+		@apply grid text-center p-4 content-center items-center w-full gap-2 grid-cols-6 grid-rows-2 ml-0;
+	}
+	.letters--letter {
+		@apply text-white flex flex-col place-content-center min-h-[100px] text-3xl border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)] hover:bg-[rgb(255,255,255,0.1)];
+	}
 
-  /* Countdown */
-  .countdown--container {
-   @apply py-4 flex flex-col text-center items-center content-center w-full border-b-2 border-black 
-  }  
-  .countdown--timer {
-    @apply flex text-6xl; 
-  }
+	/* Countdown */
+	.countdown--container {
+		@apply py-4 flex flex-col text-center items-center content-center w-full;
+	}
+	.countdown--timer {
+		@apply flex text-6xl text-white;
+	}
 
-  /* Input */
-  .input--container {
-    @apply flex flex-col text-center items-center content-center border-b-2 border-black py-4 gap-4
-  }
-  .input--field {
-    @apply border-black border-2 
-  }
-  .input--submit-button {
-    @apply uppercase tracking-widest text-3xl
-  }
+	/* Input */
+	.input--container {
+		@apply flex flex-col text-center items-center content-center py-4 gap-4;
+	}
+	.input--submit-button {
+		@apply uppercase tracking-widest text-4xl text-white;
+	}
 
-  /* Progress */
-  .progress--container {
-    @apply flex flex-col items-stretch content-center border-black 
-  }
-  .progress--manifest {
-    @apply flex flex-col text-center items-stretch content-center border-[.5px] py-4 border-gray-900;
-  }
-  .progress--attempted-words {
-    @apply break-words grid grid-cols-3  flex-grow text-center items-center content-center border-[.5px] border-gray-900 py-4;
-  }
+	/* Progress */
+	.progress--container {
+		@apply flex flex-col items-stretch content-center;
+	}
+	.progress--manifest {
+		@apply flex flex-col text-center items-stretch content-center py-4  text-white;
+	}
+	.progress--attempted-words {
+		@apply break-words grid grid-cols-3  flex-grow text-center items-center content-center py-4;
+	}
 
-  /* New Game Button */
-  .new-game--container {
-    @apply bg-[#5a527c] flex flex-row content-center justify-center border-[.5px] border-gray-900 py-5
-  }
-  .new-game--button {
-    @apply h-[50px] border-2 font-semibold text-white flex flex-row content-center items-center p-5 rounded-r-3xl rounded-l-3xl bg-[#5a527c] hover:bg-white hover:text-[#5a527c] hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl 
-  }
+	/* New Game Button */
+	.new-game--container {
+		@apply flex flex-row content-center justify-center py-5;
+	}
+	.new-game--button {
+		@apply h-[50px] font-semibold text-white flex flex-row content-center items-center p-5 rounded-r-3xl rounded-l-3xl bg-[#5a527c] hover:bg-white hover:text-[#5a527c] hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl;
+	}
 }

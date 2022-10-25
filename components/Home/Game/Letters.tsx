@@ -15,32 +15,14 @@ const Letters = ({
 	const isActive = useSelector(selectIsActiveState)
 	const [letters, setLetters] = useState(randomLetters)
 	return (
-		<>
 		<div className="letters--container">
-			{isActive? (
-				letters.map(letter => (
-					<span key={letter} className="letters--letter">
-						{letter}
-					</span>
-				))
-			) : (
-				<>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-					<span className="letters--letter"></span>
-				</>
+			{letters.map(letter => (
+				<span key={letter} className="letters--letter">
+					{letter}
+				</span>
+				)
 			)}
 		</div>
-</>
 	);
 };
 const getServerSideProps = wrapper.getServerSideProps (
