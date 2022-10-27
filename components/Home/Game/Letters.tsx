@@ -3,38 +3,56 @@ import { wrapper } from '../../../store/index';
 import {
 	selectIsActiveState,
 	setIsActive,
+	selectRandomLetters,
+	setRandomLetters
 } from '../../../store/slices/gameSlice';
-import { useSelector} from 'react-redux'
+import { useSelector } from 'react-redux';
 import { gameSlice } from '../../../store/slices/gameSlice';
-const Letters = ({
-	randomLetters,
-}: {
-	randomLetters: string[];
-}) => {
 
-	const isActive = useSelector(selectIsActiveState)
-	const [letters, setLetters] = useState(randomLetters)
+const Letters = () => {
+	const isActive = useSelector(selectIsActiveState);
+	const randomLetters = useSelector(selectRandomLetters);
+	const [letters, setLetters] = useState(randomLetters);
 	return (
-		<div className="letters--container">
-			{letters.map(letter => (
-				<span key={letter} className="letters--letter">
-					{letter}
-				</span>
-				)
+		<>
+			{isActive ? (
+				<div className="letters--container">
+					{randomLetters.map(letter => (
+						<span key={letter} className="letters--letter">
+							{isActive && letter}
+						</span>
+					))}
+				</div>
+			) : (
+				<div className="letters--container">
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+					<span className="letters--letter"></span>
+				</div>
 			)}
-		</div>
+		</>
 	);
 };
-const getServerSideProps = wrapper.getServerSideProps (
+const getServerSideProps = wrapper.getServerSideProps(
 	store =>
 		async ({ params }) => {
-			store.getState()
+			// store.getState()
 			return {
 				props: {
-					isActive
-				},
+					isActive,
+					randomLetters
+				}
 			};
-		},
+		}
 );
 
 export default Letters;

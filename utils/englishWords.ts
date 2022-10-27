@@ -1,4 +1,4 @@
-const englishWords: string[] = [
+export const englishWords: string[] = [
 	'aa',
 	'aah',
 	'aahed',
@@ -274924,7 +274924,7 @@ const englishWords: string[] = [
 	'zyzzyva',
 	'zyzzyvas',
 	'zzz',
-	'zzzs'
-]
+	'zzzs',
+];
 
 export default englishWords;

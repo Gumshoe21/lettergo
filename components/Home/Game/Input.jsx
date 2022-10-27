@@ -1,20 +1,26 @@
 import { useRef } from 'react';
+import {
+	selectIsActiveState,
+	setIsActive,
+	selectRandomLetters,
+	setRandomLetters,
+} from '../../../store/slices/gameSlice';
+import { useSelector } from 'react-redux';
 
 const Input = () => {
+	const inputRef = useRef(null);
+	const isActiveState = useSelector(selectIsActiveState);
+	const randomLettersState = useSelector(selectRandomLetters);
+	const handleOnSubmit = () => {
+		console.log(inputRef.current.value);
+		inputRef.current.value = '';
+	};
 
-  const inputRef = useRef(null)
-
-
-  const handleOnSubmit = () => {
-    console.log(inputRef.current.value)
-    inputRef.current.value = ''
-  }
-
-  return (
+	return (
 		<div className="input--container">
 			<input
 				ref={inputRef}
-				class="py-2 text-center rounded-lg shadow-sm focus:ring-[5px] transition-all focus:ring-purple-400 sm:text-5xl uppercase outline-none"
+				className="py-2 text-center rounded-lg shadow-sm focus:ring-[5px] transition-all focus:ring-purple-400 sm:text-5xl uppercase outline-none"
 			/>
 
 			<button
