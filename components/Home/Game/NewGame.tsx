@@ -23,7 +23,7 @@ const NewGame = ({}: {}) => {
 	const possibleWordsState = useSelector(selectPossibleWords);
 	const wordsPerLetterLengthState = useSelector(selectWordsPerLetterLength);
 
-	const activateGame = async (): string[] => {
+	const activateGame = async (): void => {
 		const alphabet: string[] = [
 			'A',
 			'B',
@@ -55,7 +55,13 @@ const NewGame = ({}: {}) => {
 		const randomLetters = _.shuffle(alphabet).slice(14, 26) as string[];
 
 		let possibleWords = englishWords.filter(word =>
-			word.match(new RegExp(/^(?:([dog])(?!.*\1))*$/))
+			word.match(
+				new RegExp(
+					'^(?:([' +
+						`${randomLetters.join('').toLowerCase()}` +
+						'])(?!.*\\1))*$'
+				)
+			)
 		) as string[];
 
 		let wordsPerLetterLength: GameState['wordsPerLetterLength'] = {};
@@ -63,7 +69,7 @@ const NewGame = ({}: {}) => {
 			wordsPerLetterLength[possibleWords[i].length] ||= [];
 			wordsPerLetterLength[possibleWords[i].length].push([possibleWords[i]]);
 		}
-
+		console.log(possibleWords);
 		dispatch(
 			setActiveGameStates({
 				possibleWords,
