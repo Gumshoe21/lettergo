@@ -10,12 +10,11 @@ import { useSelector } from 'react-redux';
 import { gameSlice } from '../../../store/slices/gameSlice';
 
 const Letters = () => {
-	const isActive = useSelector(selectIsActiveState);
 	const randomLetters = useSelector(selectRandomLetters);
-	const [letters, setLetters] = useState(randomLetters);
+	const isActive = useSelector(selectIsActiveState);
 	return (
 		<>
-			{isActive ? (
+			{isActive === true && randomLetters.length > 0 ? (
 				<div className="letters--container">
 					{randomLetters.map(letter => (
 						<span key={letter} className="letters--letter">

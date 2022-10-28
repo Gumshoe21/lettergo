@@ -1,6 +1,6 @@
 import { HYDRATE } from 'next-redux-wrapper'
-import { createSlice} from '@reduxjs/toolkit'
-import { AppState } from '../index'
+import { bindActionCreators, createSlice } from '@reduxjs/toolkit';
+import { AppState } from '../index';
 
 export interface GameState {
 	isActive: boolean;
@@ -24,8 +24,8 @@ export const gameSlice = createSlice({
 	name: 'game',
 	initialState,
 	reducers: {
-		setIsActive(state) {
-			state.isActive = !state.isActive;
+		setIsActive(state, action) {
+			state.isActive = action.payload;
 		},
 		setRandomLetters(state, action) {
 			state.randomLetters = action.payload;
@@ -35,6 +35,12 @@ export const gameSlice = createSlice({
 		},
 		setWordsPerLetterLength(state, action) {
 			state.wordsPerLetterLength = action.payload;
+		},
+		setActiveGameStates(state, action) {
+			state.randomLetters = action.payload.randomLetters;
+			state.possibleWords = action.payload.possibleWords;
+			state.wordsPerLetterLength = action.payload.wordsPerLetterLength;
+			state.isActive = true;
 		}
 	},
 	extraReducers: {
@@ -56,7 +62,8 @@ export const {
 	setIsActive,
 	setRandomLetters,
 	setPossibleWords,
-	setWordsPerLetterLength
+	setWordsPerLetterLength,
+	setActiveGameStates
 } = gameSlice.actions;
 
 export const selectIsActiveState = (state: AppState) => state.game.isActive;

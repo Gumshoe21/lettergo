@@ -7,7 +7,8 @@ import {
 	setPossibleWords,
 	selectPossibleWords,
 	setWordsPerLetterLength,
-	selectWordsPerLetterLength
+	selectWordsPerLetterLength,
+	setActiveGameStates
 } from '../../../store/slices/gameSlice';
 import { GameState } from '../../../store/slices/gameSlice';
 import { englishWords } from '../../../utils/englishWords';
@@ -22,7 +23,7 @@ const NewGame = ({}: {}) => {
 	const possibleWordsState = useSelector(selectPossibleWords);
 	const wordsPerLetterLengthState = useSelector(selectWordsPerLetterLength);
 
-	const generateRandomLetters = (): string[] => {
+	const activateGame = async (): string[] => {
 		const alphabet: string[] = [
 			'A',
 			'B',
@@ -51,47 +52,27 @@ const NewGame = ({}: {}) => {
 			'Y',
 			'Z'
 		];
+		const randomLetters = _.shuffle(alphabet).slice(14, 26) as string[];
 
-		return _.shuffle(alphabet).slice(14, 26) as string[];
-	};
-
-	const generatePossibleWords = (
-		generatedRandomLetters: string[]
-	): string[] => {
-		let theAnswer = englishWords.filter(word =>
+		let possibleWords = englishWords.filter(word =>
 			word.match(new RegExp(/^(?:([dog])(?!.*\1))*$/))
 		) as string[];
-		console.log(theAnswer);
-		return theAnswer;
-	};
 
-	const generateWordsPerLetterLength = (
-		generatedPossibleWords: string[]
-	): GameState['wordsPerLetterLength'] => {
-		let lengths: GameState['wordsPerLetterLength'] = {};
-
-		for (let i = 0; i < generatedPossibleWords.length; i++) {
-			lengths[generatedPossibleWords[i].length] ||= [];
-
-			lengths[generatedPossibleWords[i].length].push([
-				generatedPossibleWords[i]
-			]);
+		let wordsPerLetterLength: GameState['wordsPerLetterLength'] = {};
+		for (let i = 0; i < possibleWords.length; i++) {
+			wordsPerLetterLength[possibleWords[i].length] ||= [];
+			wordsPerLetterLength[possibleWords[i].length].push([possibleWords[i]]);
 		}
-		console.log('lengths:', lengths);
-		return lengths as GameState['wordsPerLetterLength'];
+
+		dispatch(
+			setActiveGameStates({
+				possibleWords,
+				randomLetters,
+				wordsPerLetterLength
+			})
+		);
 	};
 
-	const activateGame = async () => {
-		dispatch(setIsActive());
-		dispatch(setRandomLetters(generateRandomLetters()));
-		dispatch(setPossibleWords(generatePossibleWords(randomLettersState)));
-	};
-	useEffect(() => {
-		dispatch(
-			setWordsPerLetterLength(generateWordsPerLetterLength(possibleWordsState))
-		);
-	}, [randomLettersState]);
-	console.log(wordsPerLetterLengthState);
 	return (
 		<div className="new-game--container">
 			<button
@@ -103,5 +84,5 @@ const NewGame = ({}: {}) => {
 			</button>
 		</div>
 	);
-};
+};;
 export default NewGame
