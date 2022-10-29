@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
-import Navbar from '../components/UI/Navbar';
-import Container from '../components/Home/Game/Container';
+import Navbar from '@ui/Navbar';
+import Container from '@game/Container';
 import Letters from '../components/Home/Game/Letters';
 import Countdown from '../components/Home/Game/Countdown';
 import Input from '../components/Home/Game/Input';
