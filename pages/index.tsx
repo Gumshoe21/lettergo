@@ -1,56 +1,43 @@
-import type { NextPage } from 'next';
 import Navbar from '@ui/Navbar';
 import Score from '@game/Score';
+import GuessedWords from '@game/GuessedWords'
 import Container from '@game/Container';
-import Letters from '../components/Home/Game/Letters';
-import Countdown from '../components/Home/Game/Countdown';
-import Input from '../components/Home/Game/Input';
-import Progress from '../components/Home/Game/Progress';
-import NewGame from '../components/Home/Game/NewGame';
-import { wrapper } from './../store/index';
-import {connect} from "react-redux";
-import {
-	selectIsActiveState,
-	setIsActive,
-	selectRandomLetters,
-	setRandomLetters
-} from './../store/slices/gameSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import Letters from '@game/Letters';
+import Countdown from '@game/Countdown';
+import Input from '@game/Input';
+import Progress from '@game/Progress';
+import NewGame from '@game/NewGame';
+import WelcomeModal from '@game/WelcomeModal';
+import { connect } from "react-redux";
 
-import WelcomeModal from '../components/Home/Game/WelcomeModal';
-
-const Home = ({ randomLetters }: { randomLetters: string[] }) => {
-	const isActiveState = useSelector(selectIsActiveState);
-	const randomLettersState = useSelector(selectRandomLetters);
-	return (
-		<>
-			<Navbar />
-			<Container>
-				<NewGame />
-				<Score />
-				<Countdown />
-				<Progress />
-				<WelcomeModal />
-				<Input />
-				<Letters />
-			</Container>
-		</>
-	);
+const Home = () => {
+  return (
+    <>
+      <Navbar />
+      <Container>
+        <NewGame />
+        <Score />
+        <Countdown />
+        <Progress />
+        <WelcomeModal />
+        <Input />
+        <Letters />
+        <GuessedWords />
+      </Container>
+    </>
+  );
 };
-
+/*
 export const getServerSideProps = wrapper.getServerSideProps(
-	store =>
-		async ({ params }) => {
-			//    await store.dispatch(setIsActiveState(true));
-
-			return {
-				props: {
-					isActive: false,
-					wordsPerLetterLength: {}
-				}
-			};
-		}
+  store =>
+    async ({ params }) => {
+      return {
+        props: {
+          isActive: false,
+          wordsPerLetterLength: {}
+        }
+      };
+    }
 );
-
+*/
 export default connect()(Home);
