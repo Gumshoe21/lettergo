@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Navbar from '@ui/Navbar';
+import Score from '@game/Score';
 import Container from '@game/Container';
 import Letters from '../components/Home/Game/Letters';
 import Countdown from '../components/Home/Game/Countdown';
@@ -27,6 +28,7 @@ const Home = ({ randomLetters }: { randomLetters: string[] }) => {
 			<Navbar />
 			<Container>
 				<NewGame />
+				<Score />
 				<Countdown />
 				<Progress />
 				<WelcomeModal />

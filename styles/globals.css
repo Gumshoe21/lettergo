@@ -56,6 +56,6 @@
 		@apply flex flex-row content-center justify-center py-5;
 	}
 	.new-game--button {
-		@apply h-[50px] font-semibold text-white flex flex-row content-center items-center p-5 rounded-r-3xl rounded-l-3xl bg-[#5a527c] hover:bg-white hover:text-[#5a527c] hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl;
+		@apply h-[50px] font-semibold text-white flex flex-row content-center items-center p-5 rounded-r-3xl rounded-l-3xl bg-primary-500  hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl;
 	}
 }

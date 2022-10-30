@@ -10,6 +10,7 @@ export interface GameState {
 	wordsPerLetterLength: {
 		[key: string]: string[];
 	};
+	score: number;
 }
 
 const initialState: GameState = {
@@ -17,7 +18,8 @@ const initialState: GameState = {
 	isOver: false,
 	randomLetters: [],
 	possibleWords: [],
-	wordsPerLetterLength: {}
+	wordsPerLetterLength: {},
+	score: 30
 };
 
 export const gameSlice = createSlice({
@@ -41,6 +43,9 @@ export const gameSlice = createSlice({
 			state.possibleWords = action.payload.possibleWords;
 			state.wordsPerLetterLength = action.payload.wordsPerLetterLength;
 			state.isActive = true;
+		},
+		setScore(state, action) {
+			state.score = action.payload;
 		}
 	},
 	extraReducers: {
@@ -63,7 +68,8 @@ export const {
 	setRandomLetters,
 	setPossibleWords,
 	setWordsPerLetterLength,
-	setActiveGameStates
+	setActiveGameStates,
+	setScore
 } = gameSlice.actions;
 
 export const selectIsActiveState = (state: AppState) => state.game.isActive;
@@ -73,5 +79,7 @@ export const selectPossibleWords = (state: AppState) =>
 	state.game.possibleWords;
 export const selectWordsPerLetterLength = (state: AppState) =>
 	state.game.wordsPerLetterLength;
+export const selectScore = (state: AppState) => state.game.score;
+
 
 export default gameSlice.reducer;
