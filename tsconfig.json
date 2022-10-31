@@ -21,25 +21,25 @@
     "baseUrl": ".",
     "paths": {
       "@ui/*": [
-        "./components/ui/*"
+        "./src/components/ui/*"
       ],
       "@game/*": [
-        "./components/Home/Game/*"
+        "./src/components/Home/Game/*"
       ],
       "@pages/*": [
-        "./pages/*"
+        "./src/pages/*"
       ],
       "@store/*": [
-        "./store/index.ts"
+        "./src/store/index.ts"
       ],
       "@actions/*": [
-        "./store/actions/*"
+        "./src/store/actions/*"
       ],
       "@slices/*": [
-        "./store/slices/*"
+        "./src/store/slices/*"
       ],
       "@utils/*": [
-        "./utils/*"
+        "./src/utils/*"
       ]
     }
   },

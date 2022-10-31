@@ -9,10 +9,18 @@ import Progress from '@game/Progress';
 import NewGame from '@game/NewGame';
 import WelcomeModal from '@game/WelcomeModal';
 import { connect } from "react-redux";
+import { wrapper } from '@store/index'
+import React, { FC } from 'react';
+import 'tailwindcss/tailwind.css';
+import type { AppProps } from 'next/app';
+import { makeStore } from '@store/index'
+import { Provider } from 'react-redux';
 
-const Home = () => {
+const Home: FC<AppProps> = ({ Component, ...rest }) => {
+
+  const { store, props } = wrapper.useWrappedStore(rest);
   return (
-    <>
+    <Provider store={store}>
       <Navbar />
       <Container>
         <NewGame />
@@ -24,7 +32,7 @@ const Home = () => {
         <Letters />
         <GuessedWords />
       </Container>
-    </>
+    </Provider>
   );
 };
 /*
@@ -40,4 +48,4 @@ export const getServerSideProps = wrapper.getServerSideProps(
     }
 );
 */
-export default connect()(Home);
+export default Home

@@ -1,14 +1,14 @@
-import { configureStore, ThunkAction, Action} from "@reduxjs/toolkit"
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import { gameSlice, } from "./slices/gameSlice"
 import { createWrapper } from "next-redux-wrapper"
 
-export const makeStore = () => 
-	configureStore({
-		reducer: {
-			[gameSlice.name]: gameSlice.reducer,
-		},
-		devTools:true,
-	})
+export const makeStore = () =>
+  configureStore({
+    reducer: {
+      [gameSlice.name]: gameSlice.reducer,
+    },
+    devTools: true,
+  })
 
 
 export type AppStore = ReturnType<typeof makeStore>;
@@ -20,5 +20,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   Action
 >;
 
-export const wrapper = createWrapper<AppStore>(makeStore, {debug: true});
+export const wrapper = createWrapper<AppStore>(makeStore, { debug: true });
 
