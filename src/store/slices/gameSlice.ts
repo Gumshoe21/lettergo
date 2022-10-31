@@ -35,6 +35,9 @@ export const gameSlice = createSlice({
     setIsActive(state, action) {
       state.isActive = action.payload;
     },
+    setIsOver(state, action) {
+      state.isOver = action.payload;
+    },
     setRandomLetters(state, action) {
       state.randomLetters = action.payload;
     },
@@ -80,6 +83,7 @@ export const gameSlice = createSlice({
 
 export const {
   setIsActive,
+  setIsOver,
   setRandomLetters,
   setPossibleWords,
   setWordsPerLetterLength,
