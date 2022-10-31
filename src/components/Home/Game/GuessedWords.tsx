@@ -25,7 +25,7 @@ const GuessedWords = () => {
 
   return (
 
-    <div className="grid grid-cols-2 grid-col-flow p-4 gap-2">
+    <div className="grid grid-cols-2 grid-col-flow pt-4 pb-8 gap-2">
       {/* Correct guesses */}
 
 

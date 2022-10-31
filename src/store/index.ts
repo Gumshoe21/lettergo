@@ -1,5 +1,5 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
-import { gameSlice, } from "./slices/gameSlice"
+import { gameSlice } from "./slices/gameSlice"
 import { createWrapper } from "next-redux-wrapper"
 
 export const makeStore = () =>

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import {
   selectIsActiveState,
   setIsActive,
@@ -39,6 +39,15 @@ const Input = () => {
     console.log(inputValue);
   };
 
+  useEffect(() => {
+    // Win scenario.
+    if (correctGuessedWords.length > 0 && correctGuessedWords.length === possibleWords.length) {
+      dispatch(setAlert("You got 'em all! That's amazing! You're a true wordsmith."))
+      dispatch(setIsActive(false));
+      return;
+    }
+  }, [correctGuessedWords])
+
   const handleOnSubmit = (e: any) => {
     e.preventDefault();
     // Duplicate guess scenario.
@@ -50,12 +59,7 @@ const Input = () => {
     if (englishWords.includes(inputRef.current?.value.toLowerCase() as string)) {
       if (inputRef.current) dispatch(setCorrectGuessedWords(inputRef.current?.value.toLowerCase()))
       dispatch(setScore(score + 10))
-      // Win scenario.
-      if (correctGuessedWords.length === possibleWords.length) {
-        dispatch(setAlert("You got 'em all! That's amazing! You're a true wordsmith."))
-        dispatch(setIsActive(false));
-        return;
-      }
+
       dispatch(setAlert("Nice one!"))
       return;
     }
@@ -79,7 +83,6 @@ const Input = () => {
   return (
     <form onSubmit={handleOnSubmit}>
       <div className="input--container">
-        <div className='text-white'>{alert}</div>
         <input
           disabled={!isActiveState}
           ref={inputRef}

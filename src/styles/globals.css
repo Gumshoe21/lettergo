@@ -34,7 +34,7 @@
 
 	/* Input */
 	.input--container {
-		@apply flex flex-col text-center items-center content-center py-4 gap-4;
+		@apply flex flex-col text-center items-center content-center gap-4 py-4;
 	}
 	.input--submit-button {
 		@apply uppercase tracking-widest text-4xl text-white;
@@ -42,10 +42,10 @@
 
 	/* Progress */
 	.progress--container {
-		@apply flex flex-col items-stretch content-center;
+		@apply flex flex-col items-stretch content-center py-4;
 	}
 	.progress--manifest {
-		@apply flex flex-col text-center items-stretch content-center py-4  text-white;
+		@apply flex flex-row text-center items-stretch gap-2 justify-between text-white;
 	}
 	.progress--attempted-words {
 		@apply break-words grid grid-cols-3  flex-grow text-center items-center content-center py-4;

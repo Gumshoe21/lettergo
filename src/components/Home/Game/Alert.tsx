@@ -30,6 +30,7 @@ const Alert = () => {
   return (
     <div>
 
+      <div className='text-white'>{alert}</div>
     </div>
   )
 

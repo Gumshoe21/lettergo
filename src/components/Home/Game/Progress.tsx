@@ -14,9 +14,14 @@ const Progress = () => {
         {isActive &&
           Object.keys(wordsPerLetterLength).map((key, _index) => {
             return (
-              <span key={key}>
-                {key} letter words: {wordsPerLetterLength[key].length}
-              </span>
+              <div className='flex flex-col'>
+                <span className='py-4' key={key}>
+                  {key} letter words:
+                </span>
+                <span>
+                  {wordsPerLetterLength[key].length}
+                </span>
+              </div>
             );
           })}
       </div>

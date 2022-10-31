@@ -1,5 +1,5 @@
 import Navbar from '@ui/Navbar';
-import Score from '@game/Score';
+import Allowance from '@game/Allowance';
 import GuessedWords from '@game/GuessedWords'
 import Container from '@game/Container';
 import Letters from '@game/Letters';
@@ -24,8 +24,8 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
       <Navbar />
       <Container>
         <NewGame />
-        <Score />
-        <Countdown />
+        <Allowance />
+        {/* <Countdown /> */}
         <Progress />
         <WelcomeModal />
         <Input />
