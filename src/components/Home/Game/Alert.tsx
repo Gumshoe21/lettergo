@@ -4,8 +4,6 @@ import {
   selectCorrectGuessedWords,
   selectPossibleWords,
   selectScore,
-  setIsActive,
-  setIsOver
 } from '@slices/gameSlice'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -17,7 +15,6 @@ const Alert = () => {
   const alert = useSelector(selectAlert)
   const correctGuessedWords = useSelector(selectCorrectGuessedWords)
   const possibleWords = useSelector(selectPossibleWords)
-  const score = useSelector(selectScore)
 
   // If the player has guessed all possible words, alert 
   const setWinAlert = useEffect(() => {

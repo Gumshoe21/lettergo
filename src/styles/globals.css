@@ -24,38 +24,9 @@
 		@apply transition-all hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] text-3xl border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)] ;
 	}
 
-	/* Countdown */
-	.countdown--container {
-		@apply py-4 flex flex-col text-center items-center content-center w-full;
-	}
-	.countdown--timer {
-		@apply flex text-6xl text-white;
-	}
 
-	/* Input */
-	.input--container {
-		@apply flex flex-col text-center items-center content-center gap-4 py-4;
-	}
-	.input--submit-button {
-		@apply uppercase tracking-widest text-4xl text-white;
-	}
-
-	/* Progress */
-	.progress--container {
-		@apply flex flex-col items-stretch content-center py-4;
-	}
-	.progress--manifest {
-		@apply flex flex-row text-center items-stretch gap-2 justify-between text-white;
-	}
 	.progress--attempted-words {
 		@apply break-words grid grid-cols-3  flex-grow text-center items-center content-center py-4;
 	}
 
-	/* New Game Button */
-	.new-game--container {
-		@apply flex flex-row content-center justify-center py-5;
-	}
-	.new-game--button {
-		@apply h-[50px] font-semibold text-white flex flex-row content-center items-center p-5 rounded-r-3xl rounded-l-3xl bg-primary-500  hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl;
-	}
 }

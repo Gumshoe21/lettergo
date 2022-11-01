@@ -39,6 +39,11 @@ const Input = () => {
     console.log(inputValue);
   };
 
+  const handleLetterClick = (e: any) => {
+    console.log(e.target.innerHTML)
+    setInputValue((inputValue) => inputValue += e.target.innerHTML)
+    console.log(inputValue)
+  }
   useEffect(() => {
     // Win scenario.
     if (correctGuessedWords.length > 0 && correctGuessedWords.length === possibleWords.length) {
@@ -61,6 +66,8 @@ const Input = () => {
       dispatch(setScore(score + 10))
 
       dispatch(setAlert("Nice one!"))
+
+      setInputValue('')
       return;
     }
     else {
@@ -75,24 +82,73 @@ const Input = () => {
       dispatch(setScore(score - 5))
       dispatch(setIncorrectGuessedWords(inputRef.current?.value.toLowerCase()))
       dispatch(setAlert("Whoops! That word doesn't exist."))
+
       return;
     }
+  }
 
+  const handleBackspace = (e) => {
+    if (inputValue.length > 0) {
+      setInputValue(inputValue.substr(0, inputValue.length - 1))
+    }
   }
 
   return (
-    <form onSubmit={handleOnSubmit}>
-      <div className="input--container">
-        <input
-          disabled={!isActiveState}
-          ref={inputRef}
-          value={inputValue}
-          className="py-2 text-center rounded-lg shadow-sm focus:ring-[5px] transition-all sm:text-5xl uppercase outline-none"
-          onChange={e => handleInputChange(e)}
-        />
-        <Button disabled={!isActiveState} type={"submit"}>Submit</Button>
-      </div>
-    </form>
+    <>
+      <form onSubmit={handleOnSubmit}>
+        <div className="flex flex-row text-center justify-center gap-4 items-center py-4">
+          <input
+            disabled={!isActiveState}
+            ref={inputRef}
+            value={inputValue}
+            className="py-2 text-center rounded-lg shadow-sm focus:ring-[5px] transition-all sm:text-5xl uppercase outline-none"
+            onChange={e => handleInputChange(e)}
+          />
+          <svg onClick={e => handleBackspace(e)} xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25m-2.58 4.92l-6.375-6.375a1.125 1.125 0 010-1.59L9.42 4.83c.211-.211.498-.33.796-.33H19.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-9.284c-.298 0-.585-.119-.796-.33z" />
+          </svg>
+          <Button disabled={!isActiveState} className='tracking-widest text-4xl text-white uppercase' type={"submit"}>Enter</Button>
+        </div>
+
+
+      </form>
+      <>
+        {isActiveState === true && randomLetters.length > 0 ? (
+          <div className="letters--container">
+            {randomLetters.map(letter => (
+              <button
+                key={letter}
+                className={`
+
+		transition-all hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] text-3xl 
+
+${inputValue.includes(letter) ? 'border-[1px] border-green-700 hover:border-green-400' : 'border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)]'} align-center items-center`}
+                disabled={inputValue.split('').includes(letter)}
+                value={letter}
+                onClick={handleLetterClick}
+              >
+                {isActiveState && letter}
+              </button>
+            ))}
+          </div>
+        ) : (
+          <div className="letters--container">
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+            <span className="letters--letter"></span>
+          </div>
+        )}
+      </>
+    </>
   );
 };
 

@@ -36,18 +36,4 @@ const Letters = () => {
     </>
   );
 };
-/*
-const getServerSideProps = wrapper.getServerSideProps(
-  _store =>
-    async ({ params }) => {
-      // store.getState()
-      return {
-        props: {
-          isActive,
-          randomLetters
-        }
-      };
-    }
-);
-*/
 export default Letters;
