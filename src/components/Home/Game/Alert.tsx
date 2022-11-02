@@ -26,9 +26,9 @@ const Alert = () => {
 
 
   return (
-    <div className='flex items-center'>
+    <div className='flex items-center justify-center text-center px-4'>
 
-      <div className='text-white'>{alert}</div>
+      <div className='text-white text-xl uppercase'>{alert}</div>
     </div>
   )
 

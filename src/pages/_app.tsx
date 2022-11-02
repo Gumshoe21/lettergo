@@ -9,7 +9,9 @@ import { Provider } from 'react-redux';
 const MyApp: FC<AppProps> = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   return (
-    <Component {...props.pageProps} />
+    <Provider store={store}>
+      <Component {...props.pageProps} />
+    </Provider>
   );
 };
 

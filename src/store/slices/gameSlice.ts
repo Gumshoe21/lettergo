@@ -59,8 +59,11 @@ export const gameSlice = createSlice({
       state.possibleWords = action.payload.possibleWords;
       state.wordsPerLetterLength = action.payload.wordsPerLetterLength;
       state.wordCountPerLetterLength = action.payload.wordCountPerLetterLength;
-
+      state.correctGuessedWords = [];
+      state.incorrectGuessedWords = [];
       state.isActive = true;
+      state.alert = '';
+      state.isOver = false;
     },
     setScore(state, action) {
       state.score = action.payload;
@@ -105,6 +108,8 @@ export const {
 } = gameSlice.actions;
 
 export const selectIsActiveState = (state: AppState) => state.game.isActive;
+
+export const selectIsOver = (state: AppState) => state.game.isOver;
 export const selectRandomLetters = (state: AppState) =>
   state.game.randomLetters;
 export const selectPossibleWords = (state: AppState) =>
