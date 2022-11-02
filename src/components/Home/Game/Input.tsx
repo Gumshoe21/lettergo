@@ -40,8 +40,12 @@ const Input = () => {
   };
 
   const handleLetterClick = (e: any) => {
-    console.log(e.target.innerHTML)
-    setInputValue((inputValue) => inputValue += e.target.innerHTML)
+    if (!inputValue.includes(e.target.innerHTML.toUpperCase())) {
+      setInputValue((inputValue) => inputValue += e.target.innerHTML.toUpperCase())
+    }
+    else {
+      setInputValue((inputValue) => inputValue.split('').filter(i => i !== e.target.innerHTML.toUpperCase()).join(''))
+    }
     console.log(inputValue)
   }
   useEffect(() => {
@@ -123,9 +127,8 @@ const Input = () => {
               <button
                 key={letter}
                 className={`transition-all duration-500 hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] text-3xl ${inputValue.includes(letter) ? 'border-[2px] border-green-600 hover:border-green-500' : 'border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)]'} align-center items-center`}
-                disabled={inputValue.split('').includes(letter)}
                 value={letter}
-                onClick={handleLetterClick}
+                onClick={(e) => handleLetterClick(e)}
               >
                 {isActiveState && letter}
               </button>

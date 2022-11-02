@@ -1,9 +1,8 @@
 import Navbar from '@ui/Navbar';
 import GuessedWords from '@game/GuessedWords'
 import Container from '@game/Container';
-import Alert from '@game/Alert'
 import Input from '@game/Input';
-import Progress from '@game/Progress';
+import WordsToFind from '@game/WordsToFind';
 import NewGame from '@game/NewGame';
 import WelcomeModal from '@game/WelcomeModal';
 import { wrapper } from '@store/index'
@@ -20,7 +19,7 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
       <Navbar />
       <Container>
         <NewGame />
-        <Progress />
+        <WordsToFind />
         <WelcomeModal />
         {/*<Alert/>*/}
         <Input />
