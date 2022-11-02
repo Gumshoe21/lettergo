@@ -10,6 +10,9 @@ export interface GameState {
   wordsPerLetterLength: {
     [key: string]: string[];
   };
+  wordCountPerLetterLength: {
+    [key: number]: number
+  }
   score: number;
   alert: string;
   correctGuessedWords: string[],
@@ -25,7 +28,8 @@ const initialState: GameState = {
   score: 30,
   alert: "",
   correctGuessedWords: [],
-  incorrectGuessedWords: []
+  incorrectGuessedWords: [],
+  wordCountPerLetterLength: {}
 };
 
 export const gameSlice = createSlice({
@@ -47,10 +51,15 @@ export const gameSlice = createSlice({
     setWordsPerLetterLength(state, action) {
       state.wordsPerLetterLength = action.payload;
     },
+    setWordCountPerLetterLength(state, action) {
+      state.wordCountPerLetterLength[action.payload] -= 1;
+    },
     setActiveGameStates(state, action) {
       state.randomLetters = action.payload.randomLetters;
       state.possibleWords = action.payload.possibleWords;
       state.wordsPerLetterLength = action.payload.wordsPerLetterLength;
+      state.wordCountPerLetterLength = action.payload.wordCountPerLetterLength;
+
       state.isActive = true;
     },
     setScore(state, action) {
@@ -87,11 +96,12 @@ export const {
   setRandomLetters,
   setPossibleWords,
   setWordsPerLetterLength,
+  setWordCountPerLetterLength,
   setActiveGameStates,
   setScore,
   setCorrectGuessedWords,
   setIncorrectGuessedWords,
-  setAlert
+  setAlert,
 } = gameSlice.actions;
 
 export const selectIsActiveState = (state: AppState) => state.game.isActive;
@@ -100,7 +110,10 @@ export const selectRandomLetters = (state: AppState) =>
 export const selectPossibleWords = (state: AppState) =>
   state.game.possibleWords;
 export const selectWordsPerLetterLength = (state: AppState) =>
+
   state.game.wordsPerLetterLength;
+
+export const selectWordCountPerLetterLength = (state: AppState) => state.game.wordCountPerLetterLength
 export const selectScore = (state: AppState) => state.game.score;
 export const selectAlert = (state: AppState) => state.game.alert;
 export const selectCorrectGuessedWords = (state: AppState) => state.game.correctGuessedWords;

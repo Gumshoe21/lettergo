@@ -8,6 +8,7 @@ import {
 import { englishWords } from '@utils/englishWords'
 import _ from 'lodash';
 import Allowance from '@game/Allowance'
+import Alert from '@game/Alert'
 
 const NewGame = ({ }: {}) => {
   const dispatch = useDispatch();
@@ -61,25 +62,37 @@ const NewGame = ({ }: {}) => {
       wordsPerLetterLength[possibleWords[i].length].push(possibleWords[i]);
     }
 
+    interface keyNumVal {
+      [key: string]: number
+    }
+
+    let wordCountPerLetterLength: keyNumVal = {}
+    for (let i = 0; i < possibleWords.length; i++) {
+      wordCountPerLetterLength[possibleWords[i].length] ||= 0;
+      wordCountPerLetterLength[possibleWords[i].length] += 1
+    }
+
     dispatch(
       setActiveGameStates({
         possibleWords,
         randomLetters,
-        wordsPerLetterLength
+        wordsPerLetterLength,
+        wordCountPerLetterLength
       })
     );
   };
 
   return (
-    <div className="flex flex-row content-center justify-around py-2">
-      <Allowance />
+    <div className={`flex flex-row content-center ${isActiveState ? 'justify-between' : 'justify-center'} py-2 px-4`}>
+      {isActiveState && <Allowance />}
+      {isActiveState && <Alert />}
       <div className="py-4 flex flex-row content-center justify-center text-white text-center text-1xl uppercase">
         <button
-          className={`h-[50px] font-semibold text-white flex flex-row justify-center content-center items-center p-5 rounded-r-3xl rounded-l-3xl bg-primary-500  hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl ${isActiveState ? 'disabled' : ''}`}
+          className={`font-semibold text-white flex flex-row justify-center content-center items-center py-2 px-4 rounded-r-md rounded-l-md bg-primary-500  hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl ${isActiveState ? 'disabled' : ''}`}
           disabled={isActiveState ? true : false}
           onClick={activateGame}
         >
-          New Game
+          {!isActiveState ? 'Start' : 'Give Up?'}
         </button>
       </div>
     </div>

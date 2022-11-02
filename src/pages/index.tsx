@@ -22,7 +22,7 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
         <NewGame />
         <Progress />
         <WelcomeModal />
-        <Alert />
+        {/*<Alert/>*/}
         <Input />
         <GuessedWords />
       </Container>

@@ -27,7 +27,7 @@ module.exports = {
         },
         letterFadeIn: {
           '0%': { bg: 'none' },
-          '100%': { bg: 'blue' }
+          '100%': { bg: 'green.600' }
         }
       },
       animation: {

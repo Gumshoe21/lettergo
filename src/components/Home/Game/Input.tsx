@@ -8,10 +8,11 @@ import {
   selectIncorrectGuessedWords,
   selectCorrectGuessedWords,
   setAlert,
-  selectAlert,
   setCorrectGuessedWords,
   setIncorrectGuessedWords,
-  selectPossibleWords
+  selectPossibleWords,
+  selectWordsPerLetterLength,
+  setWordCountPerLetterLength,
 } from '@slices/gameSlice'
 import { useSelector } from 'react-redux';
 import Button from '@ui/Button';
@@ -22,7 +23,6 @@ const Input = () => {
   const correctGuessedWords = useSelector(selectCorrectGuessedWords)
   const incorrectGuessedWords = useSelector(selectIncorrectGuessedWords)
   const possibleWords: string[] = useSelector(selectPossibleWords)
-  const alert = useSelector(selectAlert)
   const score = useSelector(selectScore)
   const dispatch = useDispatch()
   const inputRef = useRef<HTMLInputElement>(null);
@@ -33,9 +33,9 @@ const Input = () => {
   const handleInputChange = (e: any) => {
     // This pattern tests if the entered word is composed of only the generated random letters, and only one of each of those letters.
     const randomLettersPattern = new RegExp(
-      '^(?:([' + `${randomLetters.join('').toLowerCase()}` + '])(?!.*\\1))*$'
+      '^(?:([' + `${randomLetters.join('').toUpperCase()}` + '])(?!.*\\1))*$'
     );
-    if (randomLettersPattern.test(e.currentTarget.value)) setInputValue(e.currentTarget.value);
+    if (randomLettersPattern.test(e.currentTarget.value.toUpperCase())) setInputValue(e.currentTarget.value.toUpperCase());
     console.log(inputValue);
   };
 
@@ -62,7 +62,10 @@ const Input = () => {
     }
     // Valid word scenario.
     if (englishWords.includes(inputRef.current?.value.toLowerCase() as string)) {
+      let wordLength: number | undefined = inputRef.current?.value.length
+      dispatch(setWordCountPerLetterLength(wordLength))
       if (inputRef.current) dispatch(setCorrectGuessedWords(inputRef.current?.value.toLowerCase()))
+
       dispatch(setScore(score + 10))
 
       dispatch(setAlert("Nice one!"))
@@ -96,17 +99,18 @@ const Input = () => {
   return (
     <>
       <form onSubmit={handleOnSubmit}>
-        <div className="flex flex-row text-center justify-center gap-4 items-center py-4">
+        <div className="flex flex-row text-center justify-around gap-2 items-center py-4 px-4">
+          <svg onClick={e => handleBackspace(e)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" className="w-16 h-16">
+            <path fillRule="evenodd" d="M7.22 3.22A.75.75 0 017.75 3h9A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17h-9a.75.75 0 01-.53-.22L.97 10.53a.75.75 0 010-1.06l6.25-6.25zm3.06 4a.75.75 0 10-1.06 1.06L10.94 10l-1.72 1.72a.75.75 0 101.06 1.06L12 11.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L12 8.94l-1.72-1.72z" clipRule="evenodd" />
+          </svg>
           <input
             disabled={!isActiveState}
             ref={inputRef}
             value={inputValue}
-            className="py-2 text-center rounded-lg shadow-sm focus:ring-[5px] transition-all sm:text-5xl uppercase outline-none"
+            className="py-2 text-center rounded-lg shadow-sm focus:ring-[5px] text-3xl md:text-4xl uppercase outline-none"
             onChange={e => handleInputChange(e)}
           />
-          <svg onClick={e => handleBackspace(e)} xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 9.75L14.25 12m0 0l2.25 2.25M14.25 12l2.25-2.25M14.25 12L12 14.25m-2.58 4.92l-6.375-6.375a1.125 1.125 0 010-1.59L9.42 4.83c.211-.211.498-.33.796-.33H19.5a2.25 2.25 0 012.25 2.25v10.5a2.25 2.25 0 01-2.25 2.25h-9.284c-.298 0-.585-.119-.796-.33z" />
-          </svg>
+
           <Button disabled={!isActiveState} className='tracking-widest text-4xl text-white uppercase' type={"submit"}>Enter</Button>
         </div>
 
@@ -118,11 +122,7 @@ const Input = () => {
             {randomLetters.map(letter => (
               <button
                 key={letter}
-                className={`
-
-		transition-all hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] text-3xl 
-
-${inputValue.includes(letter) ? 'border-[1px] border-green-700 hover:border-green-400' : 'border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)]'} align-center items-center`}
+                className={`transition-all duration-500 hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] text-3xl ${inputValue.includes(letter) ? 'border-[2px] border-green-600 hover:border-green-500' : 'border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)]'} align-center items-center`}
                 disabled={inputValue.split('').includes(letter)}
                 value={letter}
                 onClick={handleLetterClick}
