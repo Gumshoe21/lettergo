@@ -8,9 +8,7 @@
   html {
     @apply flex flex-col min-w-fit min-h-fit justify-center 
   }
-
 	body {
-
 		margin: 0;
 		padding: 0;
 		@apply bg-neutral-900;
@@ -25,10 +23,10 @@
 @layer components {
 	/* Letters */
 	.letters--container {
-		@apply grid text-center p-4 content-center items-center w-full gap-2 grid-cols-6 grid-rows-2 ml-0;
+		@apply grid text-center p-4 content-center items-center w-full gap-2 grid-cols-6 grid-rows-2 ml-0 ;
 	}
 	.letters--letter {
-		@apply transition-all hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] text-3xl border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)] ;
+		@apply text-3xl transition-all hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)] ;
 	}
 
 

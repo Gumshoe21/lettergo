@@ -11,8 +11,8 @@ import {
   setCorrectGuessedWords,
   setIncorrectGuessedWords,
   selectPossibleWords,
-  selectWordsPerLetterLength,
   setWordCountPerLetterLength,
+  setIsOver
 } from '@slices/gameSlice'
 import { useSelector } from 'react-redux';
 import Button from '@ui/Button';
@@ -83,6 +83,7 @@ const Input = () => {
         dispatch(setScore(score - 5))
         dispatch(setAlert("Game Over! Try again."))
         dispatch(setIsActive(false))
+        dispatch(setIsOver(true))
         return
       }
       // Nonexistent word scenario.
