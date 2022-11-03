@@ -64,6 +64,7 @@ export const gameSlice = createSlice({
       state.isActive = true;
       state.alert = '';
       state.isOver = false;
+      state.score = 30;
     },
     setScore(state, action) {
       state.score = action.payload;

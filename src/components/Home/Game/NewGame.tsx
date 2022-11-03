@@ -3,7 +3,6 @@ import {
   selectIsActiveState,
   setIsActive,
   setActiveGameStates,
-  selectScore,
   selectIsOver,
   setIsOver,
   GameState
@@ -17,8 +16,7 @@ const NewGame = ({ }: {}) => {
 
   const dispatch = useDispatch();
   const isActive = useSelector(selectIsActiveState);
-  const score = useSelector(selectScore)
-  const isOver = useSelector(selectIsOver)
+  const isOver = useSelector(selectIsOver);
 
   const activateGame = (): void => {
     const alphabet: string[] = [
@@ -97,13 +95,16 @@ const NewGame = ({ }: {}) => {
       {isActive && <Alert />}
       <div className="py-4 flex flex-row content-center justify-center text-white text-center text-1xl uppercase">
         <button
-          className={`font-semibold text-white flex flex-row justify-center content-center items-center py-2 px-4 rounded-r-md rounded-l-md bg-primary-500  hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl ${isActive ? 'disabled' : ''}`}
+          className={`font-semibold text-white flex flex-row justify-center content-center items-center py-2 px-4 rounded-r-md rounded-l-md bg-primary-600  hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl ${isActive ? 'disabled' : ''}`}
           onClick={!isActive ? activateGame : giveUp}
         >
-          {!isActive ? 'New Game' : 'Give Up?'}
+          {!isActive && !isOver && 'New Game'}
+          {isActive && !isOver && 'Give Up?'}
+          {isOver && !isActive && 'Try Again?'}
         </button>
       </div>
     </div>
   );
-};;
+};
+
 export default NewGame

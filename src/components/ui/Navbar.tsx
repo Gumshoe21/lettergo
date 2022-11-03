@@ -14,7 +14,7 @@ const Navbar: NextPage = () => {
   return (
     <>
       <nav className="bg-white px-2 sm:px-4 py-2.5 rounded dark:bg-neutral-800 border-t-[rgb(255,255,255,0.40)] border-b-[rgb(255,255,255,0.40)] border-[1px] border-r-current border-l-current ">
-        <div className="container flex flex-wrap justify-between items-center max-w-xl mx-auto gap-4">
+        <div className="container flex flex-wrap justify-between items-stretch max-w-xl mx-auto gap-4">
           {/* main content */}
 
           {/* Company name plus svg, left side of nav */}

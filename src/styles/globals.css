@@ -3,7 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  #__next,
+  body,
+  html {
+    @apply flex flex-col min-w-fit min-h-fit justify-center 
+  }
+
 	body {
+
 		margin: 0;
 		padding: 0;
 		@apply bg-neutral-900;
