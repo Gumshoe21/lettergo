@@ -26,8 +26,6 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
         <WelcomeModal />
         {!isOver && <NewGame />}
         {!isOver && isActive && <WordsToFind />}
-        {!isOver && <Input />}
-        {!isOver && isActive && <GuessedWords />}
         {
           isOver &&
           <>
@@ -43,6 +41,10 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
             <NewGame />
           </>
         }
+
+        <Input />
+        {!isOver && isActive && <GuessedWords />}
+
 
       </Container>
     </Provider >

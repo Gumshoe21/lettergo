@@ -12,7 +12,8 @@ import {
   setIncorrectGuessedWords,
   selectPossibleWords,
   setWordCountPerLetterLength,
-  setIsOver
+  setIsOver,
+  selectIsOver
 } from '@slices/gameSlice'
 import { useSelector } from 'react-redux';
 import Button from '@ui/Button';
@@ -28,6 +29,8 @@ const Input = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const isActiveState = useSelector(selectIsActiveState);
   const randomLetters = useSelector(selectRandomLetters);
+
+  const isOver = useSelector(selectIsOver);
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (e: any) => {
@@ -105,7 +108,7 @@ const Input = () => {
     <>
       <form onSubmit={handleOnSubmit}>
         <div className="flex flex-row text-center justify-around gap-2 items-center py-4 px-4">
-          <svg onClick={e => handleBackspace(e)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" className="w-16 h-16">
+          <svg onClick={e => handleBackspace(e)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" className="w-16 h-16 cursor-pointer">
             <path fillRule="evenodd" d="M7.22 3.22A.75.75 0 017.75 3h9A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17h-9a.75.75 0 01-.53-.22L.97 10.53a.75.75 0 010-1.06l6.25-6.25zm3.06 4a.75.75 0 10-1.06 1.06L10.94 10l-1.72 1.72a.75.75 0 101.06 1.06L12 11.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L12 8.94l-1.72-1.72z" clipRule="evenodd" />
           </svg>
           <input
@@ -113,26 +116,26 @@ const Input = () => {
             disabled={!isActiveState}
             ref={inputRef}
             value={inputValue}
-            className="py-2 text-center rounded-lg shadow-sm focus:ring-[5px] text-3xl md:text-4xl uppercase outline-none"
+            className="py-2 text-center rounded-lg shadow-sm focus:ring-[5px] text-2xl md:text-4xl uppercase outline-none"
             onChange={e => handleInputChange(e)}
           />
 
-          <Button disabled={!isActiveState} className='tracking-widest text-4xl text-white uppercase' type={"submit"}>Enter</Button>
+          <Button disabled={!isActiveState} type={"submit"}>Enter</Button>
         </div>
 
 
       </form>
       <>
-        {isActiveState === true && randomLetters.length > 0 ? (
+        {isActiveState || isOver === true && randomLetters.length > 0 ? (
           <div className="letters--container">
             {randomLetters.map(letter => (
               <button
                 key={letter}
-                className={`transition-all duration-500 hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] text-3xl ${inputValue.includes(letter) ? 'border-[2px] border-green-600 hover:border-green-500' : 'border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)]'} align-center items-center`}
+                className={`font-serif transition-all duration-100 hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] text-2xl ${inputValue.includes(letter) ? 'border-[2px] border-green-600 hover:border-green-500' : 'border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)]'} align-center items-center`}
                 value={letter}
                 onClick={(e) => handleLetterClick(e)}
               >
-                {isActiveState && letter}
+                {letter}
               </button>
             ))}
           </div>

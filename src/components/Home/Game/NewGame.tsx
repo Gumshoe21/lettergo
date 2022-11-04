@@ -90,12 +90,12 @@ const NewGame = ({ }: {}) => {
     dispatch(setIsOver(true))
   }
   return (
-    <div className={`flex flex-row content-center ${isActive ? 'justify-between' : 'justify-center'} py-2 px-4`}>
+    <div className={`flex flex-row content-center justify-stretch ${isActive ? 'justify-between' : 'justify-center'} py-2 px-4`}>
       {isActive && <Allowance />}
       {isActive && <Alert />}
-      <div className="py-4 flex flex-row content-center justify-center text-white text-center text-1xl uppercase">
+      <div className="py-4 flex flex-row content-center justify-center text-white text-center uppercase">
         <button
-          className={`font-semibold text-white flex flex-row justify-center content-center items-center py-2 px-4 rounded-r-md rounded-l-md bg-primary-600  hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl ${isActive ? 'disabled' : ''}`}
+          className={`text-xl font-mono tracking-tigher text-white flex flex-row justify-center content-center items-center py-2 px-4 rounded-r-md rounded-l-md bg-primary-600  hover:bg-white hover:text-primary-900  hover:transition-all hover:drop-shadow-xl ${isActive ? 'disabled' : ''}`}
           onClick={!isActive ? activateGame : giveUp}
         >
           {!isActive && !isOver && 'New Game'}

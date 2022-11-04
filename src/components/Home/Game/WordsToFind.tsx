@@ -14,8 +14,8 @@ const WordsToFind = () => {
   const wordCountPerLetterLength = useSelector(selectWordCountPerLetterLength);
 
   return (
-    <div className="flex flex-col items-center content-center gap-4">
-      <div className={`uppercase text-white text-3xl ${arima.className}  tracking-wide`}>Words Left:</div>
+    <div className="flex flex-col items-center content-center gap-4 px-4">
+      <div className={`uppercase text-white text-3xl ${arima.className} tracking-wide`}>Words Left:</div>
       <div className="flex flex-wrap justify-center text-center gap-4 text-white">
 
         {isActive &&

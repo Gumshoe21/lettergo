@@ -8,8 +8,8 @@ const Score = () => {
     <>
 
       {isActive &&
-        <div className="py-4 flex flex-row content-center justify-center text-white text-center text-1xl uppercase">
-          <span className="px-4 py-4 bg-primary-900 rounded-md">Allowance: {score}</span>
+        <div className="py-4 font-mono sm:text-md flex tracking-wide flex-row content-center justify-center text-white text-center text-xl">
+          <span className="px-4 py-4 bg-primary-600 rounded-md">Allowance: <span className="text-white">{score}</span></span>
         </div>
 
       }

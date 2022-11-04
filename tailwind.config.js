@@ -2,7 +2,7 @@
 const defaultTheme = 'tailwindcss/defaultTheme';
 const colors = require('tailwindcss/colors');
 
-const brandColor = colors.indigo;
+const brandColor = colors.green;
 
 module.exports = {
   content: [
@@ -12,6 +12,10 @@ module.exports = {
   theme: {
     container: {
       center: true
+    },
+    screens: {
+      xs: '480px',
+      xxs: '320px'
     },
     extend: {
       colors: ({ colors }) => ({
