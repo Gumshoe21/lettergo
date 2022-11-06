@@ -6,7 +6,7 @@
   #__next,
   body,
   html {
-    @apply flex flex-col min-w-fit min-h-fit justify-center 
+    @apply sticky 
   }
 
 	body {
