@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, React } from 'react';
 import {
   selectIsActiveState,
   setIsActive,
@@ -20,6 +20,7 @@ import { useSelector } from 'react-redux';
 import Button from '@ui/Button';
 import englishWords from '@utils/englishWords';
 import { useDispatch } from 'react-redux';
+import _ from 'lodash'
 
 const Input = () => {
   const correctGuessedWords = useSelector(selectCorrectGuessedWords)
@@ -107,28 +108,53 @@ const Input = () => {
       dispatch(setScore(score + 1))
       dispatch(setAlert("Nice one!"))
 
-      // 1) get letters from correct input in an array
-      let correctWordLetters: string[] | undefined = inputRef.current?.value.toUpperCase().split('')
-      ////////////////////////
+      let correctWordLetters: string[] = inputRef.current!.value.toUpperCase().split('')
 
-
-
-      let copy = [...randomLetters];
+      // let copy = [...randomLetters];
 
       let replacementLetters = alphabet.filter(() => {
         for (let i = 0; i < alphabet.length; i++) {
-          if (copy.includes(alphabet[i])) {
-            alphabet.splice(alphabet.indexOf(alphabet[i]), 1)
+          if (randomLetters.includes(alphabet[i])) {
+            setAlphabet(alphabet.splice(alphabet.indexOf(alphabet[i]), 1))
           }
         }
       })
 
-      for (let i = 0; i < correctWordLetters.length; i++) {
-        copy = copy.join('').replace(`${correctWordLetters[i]}`, alphabet[i]).split('')
-        console.log(replacementLetters[0])
+      let copy = randomLetters;
+      console.log('replacementLetters:', replacementLetters)
+      for (let i = 0; i < correctWordLetters!.length; i++) {
+        copy = copy.join('').replace(`${correctWordLetters![i]}`, _.shuffle(alphabet).filter(letter => !copy.includes(letter)).pop()).split('')
       }
-
       dispatch(setRandomLetters(copy))
+      setAlphabet(['A', 'B', 'C', 'D',
+        'E',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'M',
+        'N',
+        'O',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z'
+      ]);
+
+      console.log('correctWordLetters:', correctWordLetters)
+      console.log('replacementLetters:', replacementLetters)
+      console.log('copy:', randomLetters)
+
       setInputValue('')
       return;
     }
@@ -152,7 +178,7 @@ const Input = () => {
     */
   }
 
-  const handleBackspace = (e) => {
+  const handleBackspace = (e: React.MouseEventHandler<SVGElement>) => {
     if (inputValue.length > 0) {
       setInputValue(inputValue.substr(0, inputValue.length - 1))
     }
@@ -162,7 +188,7 @@ const Input = () => {
     <>
       <form onSubmit={handleOnSubmit}>
         <div className="flex flex-row text-center justify-around gap-2 items-center py-4 px-4">
-          <svg onClick={e => handleBackspace(e)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" className="w-16 h-16 cursor-pointer">
+          <svg onClick={(e: React.MouseEvent<SVGElement>) => handleBackspace(e)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" className="w-16 h-16 cursor-pointer">
             <path fillRule="evenodd" d="M7.22 3.22A.75.75 0 017.75 3h9A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17h-9a.75.75 0 01-.53-.22L.97 10.53a.75.75 0 010-1.06l6.25-6.25zm3.06 4a.75.75 0 10-1.06 1.06L10.94 10l-1.72 1.72a.75.75 0 101.06 1.06L12 11.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L12 8.94l-1.72-1.72z" clipRule="evenodd" />
           </svg>
           <input
