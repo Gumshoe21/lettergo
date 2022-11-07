@@ -57,11 +57,9 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
         </div>
 
         {!isOver && <NewGame />}
-        {!isOver && isActive && <WordsToFind />}
 
         {!isOver && <Input />}
 
-        {!isOver && isActive && <GuessedWords />}
         {
           isOver &&
           <>

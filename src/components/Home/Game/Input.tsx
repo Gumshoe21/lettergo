@@ -13,7 +13,8 @@ import {
   selectPossibleWords,
   setWordCountPerLetterLength,
   setIsOver,
-  selectIsOver
+  selectIsOver,
+  setRandomLetters
 } from '@slices/gameSlice'
 import { useSelector } from 'react-redux';
 import Button from '@ui/Button';
@@ -32,6 +33,30 @@ const Input = () => {
 
   const isOver = useSelector(selectIsOver);
   const [inputValue, setInputValue] = useState('');
+  let [alphabet, setAlphabet] = useState(['A', 'B', 'C', 'D',
+    'E',
+    'F',
+    'G',
+    'H',
+    'I',
+    'J',
+    'K',
+    'L',
+    'M',
+    'N',
+    'O',
+    'P',
+    'Q',
+    'R',
+    'S',
+    'T',
+    'U',
+    'V',
+    'W',
+    'X',
+    'Y',
+    'Z'
+  ]);
 
   const handleInputChange = (e: any) => {
     // This pattern tests if the entered word is composed of only the generated random letters, and only one of each of those letters.
@@ -60,26 +85,54 @@ const Input = () => {
     }
   }, [correctGuessedWords])
 
+
+
+  // TO DO
   const handleOnSubmit = (e: any) => {
     e.preventDefault();
     // Duplicate guess scenario.
+    /*
     if (correctGuessedWords.includes(inputRef.current?.value.toLowerCase() as string) || incorrectGuessedWords.includes(inputRef.current?.value.toLowerCase() as string)) {
       dispatch(setAlert("You've already guessed this word!"))
       return;
     }
+*/
     // Valid word scenario.
     if (englishWords.includes(inputRef.current?.value.toLowerCase() as string)) {
       let wordLength: number | undefined = inputRef.current?.value.length
       dispatch(setWordCountPerLetterLength(wordLength))
-      if (inputRef.current) dispatch(setCorrectGuessedWords(inputRef.current?.value.toLowerCase()))
-
-      dispatch(setScore(score + 10))
-
+      if (inputRef.current) {
+        dispatch(setCorrectGuessedWords(inputRef.current?.value.toLowerCase()))
+      }
+      dispatch(setScore(score + 1))
       dispatch(setAlert("Nice one!"))
 
+      // 1) get letters from correct input in an array
+      let correctWordLetters: string[] | undefined = inputRef.current?.value.toUpperCase().split('')
+      ////////////////////////
+
+
+
+      let copy = [...randomLetters];
+
+      let replacementLetters = alphabet.filter(() => {
+        for (let i = 0; i < alphabet.length; i++) {
+          if (copy.includes(alphabet[i])) {
+            alphabet.splice(alphabet.indexOf(alphabet[i]), 1)
+          }
+        }
+      })
+
+      for (let i = 0; i < correctWordLetters.length; i++) {
+        copy = copy.join('').replace(`${correctWordLetters[i]}`, alphabet[i]).split('')
+        console.log(replacementLetters[0])
+      }
+
+      dispatch(setRandomLetters(copy))
       setInputValue('')
       return;
     }
+    /*
     else {
       // Game over scenario.
       if (score === 5) {
@@ -96,6 +149,7 @@ const Input = () => {
 
       return;
     }
+    */
   }
 
   const handleBackspace = (e) => {
@@ -123,8 +177,8 @@ const Input = () => {
           <Button disabled={!isActiveState} type={"submit"}>Enter</Button>
         </div>
 
-
       </form>
+
       <>
         {isActiveState || isOver === true && randomLetters.length > 0 ? (
           <div className="letters--container">
