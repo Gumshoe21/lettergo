@@ -16,7 +16,8 @@ export interface GameState {
   score: number;
   alert: string;
   correctGuessedWords: string[],
-  incorrectGuessedWords: string[]
+  incorrectGuessedWords: string[],
+  timer: number
 }
 
 const initialState: GameState = {
@@ -25,11 +26,12 @@ const initialState: GameState = {
   randomLetters: [],
   possibleWords: [],
   wordsPerLetterLength: {},
-  score: 30,
+  score: 0,
   alert: "",
   correctGuessedWords: [],
   incorrectGuessedWords: [],
-  wordCountPerLetterLength: {}
+  wordCountPerLetterLength: {},
+  timer: 30
 };
 
 export const gameSlice = createSlice({
@@ -64,7 +66,8 @@ export const gameSlice = createSlice({
       state.isActive = true;
       state.alert = '';
       state.isOver = false;
-      state.score = 30;
+      state.score = 0;
+      state.timer = 30;
     },
     setScore(state, action) {
       state.score = action.payload;
@@ -77,6 +80,9 @@ export const gameSlice = createSlice({
     },
     setAlert(state, action) {
       state.alert = action.payload;
+    },
+    setTimer(state, action) {
+      state.timer = action.payload;
     }
   },
   extraReducers: {
@@ -106,24 +112,19 @@ export const {
   setCorrectGuessedWords,
   setIncorrectGuessedWords,
   setAlert,
+  setTimer
 } = gameSlice.actions;
 
 export const selectIsActiveState = (state: AppState) => state.game.isActive;
-
 export const selectIsOver = (state: AppState) => state.game.isOver;
-export const selectRandomLetters = (state: AppState) =>
-  state.game.randomLetters;
-export const selectPossibleWords = (state: AppState) =>
-  state.game.possibleWords;
-export const selectWordsPerLetterLength = (state: AppState) =>
-
-  state.game.wordsPerLetterLength;
-
+export const selectRandomLetters = (state: AppState) => state.game.randomLetters;
+export const selectPossibleWords = (state: AppState) => state.game.possibleWords;
+export const selectWordsPerLetterLength = (state: AppState) => state.game.wordsPerLetterLength;
 export const selectWordCountPerLetterLength = (state: AppState) => state.game.wordCountPerLetterLength
 export const selectScore = (state: AppState) => state.game.score;
 export const selectAlert = (state: AppState) => state.game.alert;
 export const selectCorrectGuessedWords = (state: AppState) => state.game.correctGuessedWords;
 export const selectIncorrectGuessedWords = (state: AppState) => state.game.incorrectGuessedWords;
-
+export const selectTimer = (state: AppState) => state.game.timer;
 
 export default gameSlice.reducer;

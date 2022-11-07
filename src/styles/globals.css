@@ -6,7 +6,7 @@
   #__next,
   body,
   html {
-    @apply sticky 
+    @apply relative 
   }
 
 	body {
@@ -24,10 +24,10 @@
 @layer components {
 	/* Letters */
 	.letters--container {
-		@apply grid text-center p-4 content-center items-center w-full gap-2 grid-cols-4 grid-rows-3 ml-0;
+      @apply grid text-center p-4 gap-[0.15rem] grid-cols-4 grid-rows-3 ;
 	}
 	.letters--letter {
-		@apply transition-all hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col place-content-center min-h-[100px] text-3xl border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)] ;
+		@apply transition-all hover:animate-[letterFadeIn_1s_ease-in-out] text-white flex flex-col  min-h-[100px] text-3xl border-[1px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)] ;
 	}
 
 

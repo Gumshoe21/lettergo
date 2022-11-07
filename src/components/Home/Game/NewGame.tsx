@@ -9,8 +9,6 @@ import {
 } from '@slices/gameSlice'
 import { englishWords } from '@utils/englishWords'
 import _ from 'lodash';
-import Allowance from '@game/Allowance'
-import Alert from '@game/Alert'
 
 const NewGame = ({ }: {}) => {
 
@@ -85,17 +83,20 @@ const NewGame = ({ }: {}) => {
     );
   };
 
+  /*
   const giveUp = () => {
     dispatch(setIsActive(false))
     dispatch(setIsOver(true))
   }
+  */
+
   return (
     <>
       {!isActive &&
-        <div className={`flex flex-row ${isActive ? 'justify-between' : 'justify-center'} py-4 px-4  `}>
+        <div className={`flex flex-row ${isActive ? 'justify-between' : 'justify-center'}`}>
           <div className='flex items-center justify-center text-center px-4 py-4'>
             <span
-              className={`font-semibold text-white flex flex-row py-3 px-3  rounded-r-md rounded-l-md bg-primary-600  hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl ${isActive ? 'disabled' : ''}`}
+              className={` cursor-pointer font-semibold text-white flex flex-row py-3 px-3  rounded-r-md rounded-l-md bg-primary-600  hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl ${isActive ? 'disabled' : ''}`}
               onClick={!isActive && activateGame}
             >
               {!isActive && !isOver && 'New Game'}
