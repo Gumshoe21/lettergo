@@ -34,24 +34,20 @@ const Input = () => {
 
   const isOver = useSelector(selectIsOver);
   const [inputValue, setInputValue] = useState('');
-  let [alphabet, setAlphabet] = useState(['A', 'B', 'C', 'D',
-    'E',
+  let [alphabet, setAlphabet] = useState(['B', 'C', 'D',
     'F',
     'G',
     'H',
-    'I',
     'J',
     'K',
     'L',
     'M',
     'N',
-    'O',
     'P',
     'Q',
     'R',
     'S',
     'T',
-    'U',
     'V',
     'W',
     'X',
@@ -123,27 +119,38 @@ const Input = () => {
       let copy = randomLetters;
       console.log('replacementLetters:', replacementLetters)
       for (let i = 0; i < correctWordLetters!.length; i++) {
-        copy = copy.join('').replace(`${correctWordLetters![i]}`, _.shuffle(alphabet).filter(letter => !copy.includes(letter)).pop()).split('')
+        /*
+                if (!copy.includes('A' || 'E' || 'I' || 'O' || 'U')) {
+                  copy = copy.join('').replace(`${correctWordLetters![i]}`, _.shuffle(['A', 'E', 'I', 'O', 'U']).filter(letter => !copy.includes(letter)).pop()).split('')
+                } else {
+                  copy = copy.join('').replace(`${correctWordLetters![i]}`, _.shuffle(alphabet).filter(letter => !copy.includes(letter)).pop()).split('')
+                }
+        */
+
+        if (!['A', 'E', 'I', 'O', 'U'].some(v => copy.includes(v))) {
+          copy = copy.join('').replace(`${correctWordLetters![i]}`, _.shuffle(['A', 'E', 'I', 'O', 'U']).pop()).split('')
+        } else {
+
+          copy = copy.join('').replace(`${correctWordLetters![i]}`, _.shuffle(alphabet).filter(letter => !copy.includes(letter)).pop()).split('')
+        }
       }
+
       dispatch(setRandomLetters(copy))
-      setAlphabet(['A', 'B', 'C', 'D',
-        'E',
+      copy = [];
+      setAlphabet(alphabet => ['B', 'C', 'D',
         'F',
         'G',
         'H',
-        'I',
         'J',
         'K',
         'L',
         'M',
         'N',
-        'O',
         'P',
         'Q',
         'R',
         'S',
         'T',
-        'U',
         'V',
         'W',
         'X',
@@ -154,7 +161,7 @@ const Input = () => {
       console.log('correctWordLetters:', correctWordLetters)
       console.log('replacementLetters:', replacementLetters)
       console.log('copy:', randomLetters)
-
+      replacementLetters = []
       setInputValue('')
       return;
     }
