@@ -6,18 +6,19 @@ const brandColor = colors.green;
 
 module.exports = {
   content: [
-    './src//pages/**/*.{js,ts,jsx,tsx}',
+    './pages/**/*.{js,ts,jsx,tsx}',
     './src/components/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
     container: {
       center: true
     },
-    screens: {
-      xs: '480px',
-      xxs: '320px'
-    },
     extend: {
+      screens: {
+        xs: '480px',
+        xxs: '320px'
+      },
+
       colors: ({ colors }) => ({
         primary: brandColor
       }),

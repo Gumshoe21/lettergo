@@ -10,7 +10,7 @@ import {
 import { englishWords } from '@utils/englishWords'
 import _ from 'lodash';
 
-const NewGame = ({ }: {}) => {
+const NewGame = () => {
 
   const dispatch = useDispatch();
   const isActive = useSelector(selectIsActiveState);
@@ -82,13 +82,6 @@ const NewGame = ({ }: {}) => {
       })
     );
   };
-
-  /*
-  const giveUp = () => {
-    dispatch(setIsActive(false))
-    dispatch(setIsOver(true))
-  }
-  */
 
   return (
     <>

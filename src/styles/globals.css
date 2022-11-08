@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @layer base {
+
   #__next,
   body,
   html {

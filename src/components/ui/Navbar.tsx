@@ -3,8 +3,15 @@ import React, { useState } from 'react'
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import Image from 'next/image'
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { signOut, useSession } from 'next-auth/react';
 
-const Navbar: NextPage = () => {
+const Navbar: React.FC = () => {
+  const router = useRouter()
+  const isActive: (pathname: string) => boolean = (pathname) =>
+    router.pathname === pathname;
+  const { data: session, status } = useSession();
   const [showNav, setShowNav] = useState(false)
 
   const handleShowNav = () => {
@@ -68,6 +75,21 @@ const Navbar: NextPage = () => {
                   How to Play
                 </a>
               </li>
+              {/* Log in */}
+              {!session && (
+                <li>
+                  <Link href="/api/auth/signin" legacyBehavior>
+                    <a data-active={isActive('/signup')}>Log In</a>
+                  </Link>
+                </li>
+              )}
+              {/* Log out */}
+              {session &&
+                <button onClick={() => signOut()}>
+                  <a>Log out</a>
+                </button>
+              }
+
             </ul>
           </div>
         </div>

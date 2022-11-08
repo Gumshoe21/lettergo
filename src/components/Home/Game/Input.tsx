@@ -118,7 +118,7 @@ const Input = () => {
             disabled={!isActiveState}
             ref={inputRef}
             value={inputValue}
-            className="font-serif tracking-tighest py-2 text-center rounded-lg shadow-sm focus:ring-[5px] text-2xl md:text-4xl uppercase outline-none"
+            className="font-serif tracking-tighest py-1 text-center rounded-lg shadow-sm focus:ring-[5px] text-1xl md:text-2xl uppercase outline-none"
             onChange={e => handleInputChange(e)}
           />
 

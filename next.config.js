@@ -8,7 +8,7 @@ const nextConfig = {
   swcMinify: true,
   images: {
     domains: ['flowbite.com']
-  }
+  },
 };
 
 module.exports = nextConfig

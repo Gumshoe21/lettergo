@@ -2,6 +2,7 @@ import Container from '@game/Container';
 import Input from '@game/Input';
 import NewGame from '@game/NewGame';
 import WelcomeModal from '@game/WelcomeModal';
+
 import { wrapper } from '@store/index'
 import React, { FC, useState, useCallback, useEffect, useRef } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -60,11 +61,8 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
           <span className="bg-[rgb(255,255,255,0.03)] py-2 px-4 rounded-xl">{timer}</span>
           <span className="bg-[rgb(255,255,255,0.03)] py-2 px-4 rounded-xl">{score}</span>
         </div>
-
         {!isOver && <NewGame />}
-
         {!isOver && <Input />}
-
         {
           isOver &&
           <>
