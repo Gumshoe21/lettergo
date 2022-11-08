@@ -43,6 +43,9 @@
       ],
       "@images/*": [
         "./public/images/*"
+      ],
+      "@lib/*": [
+        "./lib/*"
       ]
     }
   },
