@@ -35,23 +35,36 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
     isActive
   ]);
 
-  useEffect(() => {
-    if (timer < 1) {
-      dispatch(setIsOver(true))
-      dispatch(setIsActive(false))
-    }
-  }, [timer, setTimer])
-
   const setTickingInterval = useEffect(() => {
     tickingIntervalRef.current = setInterval(tick, 1000);
     return clearTimer;
   }, [timer, isActive]);
 
-
   const clearTimer = () => {
     clearInterval(tickingIntervalRef.current);
     tickingIntervalRef.current = null;
   };
+
+  useEffect(() => {
+    if (timer < 1) {
+      dispatch(setIsOver(true))
+      dispatch(setIsActive(false))
+      submitData()
+    }
+  }, [timer, setTimer])
+
+  const submitData = async () => {
+    try {
+      const body = { score }
+      await fetch('/api/post', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <Provider store={store}>
