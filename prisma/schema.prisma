@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,25 +8,26 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(cuid()) //
-  name          String?   @unique //
-  email         String?   @unique //
-  emailVerified DateTime? //
+  id            String    @id @default(cuid())
+  email         String?   @unique
+  username      String?   @unique
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+  emailVerified DateTime?
   image         String?
-  createdAt     DateTime  @default(now()) @map(name: "created_at") //
-  updatedAt     DateTime  @updatedAt @map(name: "updated_at") //
-  games         Game[] //
-  accounts      Account[] //
-  sessions      Session[] // 
+  name          String?   @unique
+  accounts      Account[]
+  games         Game[]
+  sessions      Session[]
 
-  @@map(name: "users")
+  @@map("users")
 }
 
 model Game {
   id     String @id @default(cuid())
   userId String
-  player User   @relation(fields: [userId], references: [id])
   score  Int
+  player User   @relation(fields: [userId], references: [id])
 }
 
 model VerificationToken {
@@ -64,8 +62,7 @@ model Account {
   session_state      String?
   oauth_token_secret String?
   oauth_token        String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user               User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
 }

@@ -7,7 +7,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['flowbite.com']
+    domains: ['flowbite.com', 'avatars.githubusercontent.com']
   },
 };
 

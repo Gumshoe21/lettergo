@@ -67,27 +67,38 @@ const Navbar: React.FC = () => {
           >
             <ul className="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-neutral-800 dark:border-gray-700">
               <li>
-                <a
+                <Link
                   href="howtoplay"
                   className="block py-2 pr-4 pl-3 text-white rounded md:bg-transparent md:p-0 dark:text-white"
                   aria-current="page"
                 >
                   How to Play
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="leaderboard"
+                  className="block py-2 pr-4 pl-3 text-white rounded md:bg-transparent md:p-0 dark:text-white"
+                  aria-current="page"
+                >
+                  Leaderboard
+                </Link>
               </li>
               {/* Log in */}
               {!session && (
                 <li>
-                  <Link href="/api/auth/signin" legacyBehavior>
-                    <a data-active={isActive('/signup')}>Log In</a>
+                  <Link className='text-white' href="/api/auth/signin" data-active={isActive('/signup')}>
+                    Log In
                   </Link>
                 </li>
               )}
               {/* Log out */}
               {session &&
-                <button onClick={() => signOut()}>
-                  <a>Log out</a>
-                </button>
+                <li>
+                  <button className='text-white' onClick={() => signOut()}>
+                    <a>Log out</a>
+                  </button>
+                </li>
               }
 
             </ul>

@@ -25,7 +25,7 @@ const MyApp: FC<AppProps> = ({ Component, pageProps, ...rest }: AppProps<{ sessi
         </Head>
 
         <Navbar />
-        <Component {...props.pageProps} />
+        <Component {...pageProps} />
       </Provider>
     </SessionProvider>
   );
