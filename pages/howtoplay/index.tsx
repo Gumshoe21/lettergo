@@ -11,7 +11,7 @@ const HowToPlay = () => {
         <div className='text-white text-xl flex flex-col items-center text-center gap-8 justify-start h-[calc(100vh-82px)] py-16'>
           <div className='text-6xl'>How to Play <span className='font-serif'>LetterGo</span></div>
           <div className='flex flex-col items-center justify-center gap-4'>
-            <div>You're given <span className='text-green-500'>12 random letters</span> and an allowance of&nbsp;
+            <div>You&apos;re given <span className='text-green-500'>12 random letters</span> and an allowance of&nbsp;
               <span className='text-green-500'>30 points:</span>
             </div>
             <div><Image width='480' height='200' alt=' Gif showing how to start a new game of LetterGo.' src='/images/start-game-gif.gif' /></div>
