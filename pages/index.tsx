@@ -4,9 +4,9 @@ import NewGame from '@game/NewGame';
 import WelcomeModal from '@game/WelcomeModal';
 import { Arima } from '@next/font/google';
 
-const arima = Arima()
+const arima = Arima({ subsets: ['latin'] })
 import { wrapper } from '@store/index'
-import React, { FC, useState, useCallback, useEffect, useRef } from 'react';
+import React, { FC, useCallback, useEffect, useRef } from 'react';
 import 'tailwindcss/tailwind.css';
 import type { AppProps } from 'next/app';
 import { Provider, useSelector } from 'react-redux';
@@ -15,15 +15,13 @@ import { useDispatch } from 'react-redux';
 const Home: FC<AppProps> = ({ Component, ...rest }) => {
   const isOver = useSelector(selectIsOver)
   const correctGuessedWords = useSelector(selectCorrectGuessedWords)
-  const incorrectGuessedWords = useSelector(selectIncorrectGuessedWords)
-  const possibleWords = useSelector(selectPossibleWords)
   const isActive = useSelector(selectIsActiveState)
   const score = useSelector(selectScore)
   const timer = useSelector(selectTimer)
   const dispatch = useDispatch()
-  const { store, props } = wrapper.useWrappedStore(rest);
+  const { store, } = wrapper.useWrappedStore(rest);
 
-  const tickingIntervalRef = useRef(null);
+  const tickingIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   const tick = useCallback(() => {
     if (timer > 0 && isActive) {
@@ -34,26 +32,19 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
     }
   }, [
     timer,
-    isActive
+    isActive,
+    dispatch
   ]);
 
   const setTickingInterval = useEffect(() => {
-    tickingIntervalRef.current = setInterval(tick, 1000);
+    tickingIntervalRef.current = setInterval(tick, 1000) as NodeJS.Timeout;
     return clearTimer;
-  }, [timer, isActive]);
+  }, [timer, isActive, tick]);
 
   const clearTimer = () => {
-    clearInterval(tickingIntervalRef.current);
+    clearInterval(tickingIntervalRef.current as NodeJS.Timeout);
     tickingIntervalRef.current = null;
   };
-
-  useEffect(() => {
-    if (timer < 1) {
-      dispatch(setIsOver(true))
-      dispatch(setIsActive(false))
-      submitData()
-    }
-  }, [timer, setTimer])
 
   const submitData = async () => {
     try {
@@ -67,6 +58,16 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
       console.error(error)
     }
   }
+
+  useEffect(() => {
+    if (timer < 1) {
+      dispatch(setIsOver(true))
+      dispatch(setIsActive(false))
+      submitData()
+    }
+  }, [timer, dispatch, submitData])
+
+
 
   return (
     <Provider store={store}>

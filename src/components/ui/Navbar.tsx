@@ -25,7 +25,7 @@ const Navbar: React.FC = () => {
           {/* main content */}
 
           {/* Company name plus svg, left side of nav */}
-          <a href="/" className="flex items-center">
+          <Link href="/" className="flex items-center">
             {/*
 
             <Image src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="LetterGo Logo" width='1' height='1' />
@@ -33,7 +33,7 @@ const Navbar: React.FC = () => {
             <span className="font-serif self-center text-2xl whitespace-nowrap dark:text-white">
               LetterGo
             </span>
-          </a>
+          </Link>
 
           {/* menu button */}
           <button

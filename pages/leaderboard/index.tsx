@@ -34,7 +34,7 @@ const Leaderboard = (props) => {
           </thead>
           <tbody className="divide-y divide-gray-500 bg-gray-800">
             {props.games.map(g => (
-              <tr>
+              <tr key={g}>
                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6"><div className='flex gap-2 items-center'><Image alt='Player avatar.' className='inline' src={`${g.player.image}`} width='48' height='48' /><span className='font-mono text-md'>{g.player.name}</span></div></td>
                 <td className="whitespace-nowrap px-5 py-4 text-right text-sm text-white sm:table-cell">{g.score}</td>
               </tr>

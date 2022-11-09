@@ -19,11 +19,11 @@ const HowToPlay = () => {
             <div>There are a few considerations and limitations:</div>
             <ul className='flex flex-col gap-2 list-outside text-left list-disc pb-20'>
               <li>You can only form heterograms; this means you can only use each letter once when forming a word.</li>
-              <li>If you try to guess a word that doesn't exist, your allowance is subtracted 10 points.</li>
+              <li>If you try to guess a word that doesn&apos;t exist, your allowance is subtracted 10 points.</li>
               <li>When you guess a real word, your allowance is increased by 10 points.</li>
               <li>If you lose all your allowance, the game is over.</li>
-              <li>If you're feeling stumped, you can end the game by clicking the "Give Up?" button.</li>
-              <li>Don't get too hung up on getting all the words in a seed (some seeds have hundreds if not thousand of possible words!), try to get as many words as possible.</li>
+              <li>If you&apos;re feeling stumped, you can end the game by clicking the &rdquo;Give Up?&rdquo; button.</li>
+              <li>Don&apos;t get too hung up on getting all the words in a seed (some seeds have hundreds if not thousand of possible words!), try to get as many words as possible.</li>
               <li>And, of course, the most important notion of all: have fun.</li>
             </ul>
           </div>

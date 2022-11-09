@@ -22,7 +22,7 @@ const Alert = () => {
     if (isActive && correctGuessedWords.length === possibleWords.length) {
       dispatch(setAlert("You got 'em all! That's amazing! You're a true wordsmith."))
     }
-  }, [correctGuessedWords])
+  }, [correctGuessedWords, dispatch, isActive, possibleWords.length])
 
 
   return (

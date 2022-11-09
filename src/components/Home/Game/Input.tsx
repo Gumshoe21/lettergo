@@ -59,7 +59,7 @@ const Input = () => {
       dispatch(setIsActive(false));
       return;
     }
-  }, [correctGuessedWords])
+  }, [correctGuessedWords, dispatch, possibleWords.length])
 
   const handleOnSubmit = (e: any) => {
     e.preventDefault();
@@ -131,7 +131,7 @@ const Input = () => {
         {isActiveState || isOver === true && randomLetters.length > 0 ? (
           <div className="letters--container">
             {randomLetters.map(letter => (
-              <div className='flex flex-col w-full'>
+              <div className='flex flex-col w-full' key={letter}>
                 <button
                   key={letter}
                   className={`transition-all duration-500 hover:animate-[letterFadeIn_1s_ease-in-out] text-white   place-content-center min-h-[100px] font-serif text-5xl ${inputValue.includes(letter) ? 'border-[2px] border-green-600 hover:border-green-500' : 'border-[2px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)]'} align-center items-center`}
