@@ -2,7 +2,9 @@ import Container from '@game/Container';
 import Input from '@game/Input';
 import NewGame from '@game/NewGame';
 import WelcomeModal from '@game/WelcomeModal';
+import { Arima } from '@next/font/google';
 
+const arima = Arima()
 import { wrapper } from '@store/index'
 import React, { FC, useState, useCallback, useEffect, useRef } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -79,16 +81,14 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
         {
           isOver &&
           <>
-            <div className='cursor-pointer px-20 py-8 text-white gap-8 flex flex-col justify-center items-center'>
-              {score === 0 && <span className='text-xl'>You're all out of allowance!</span>}
-              <span className="text-3xl uppercase font-serif">Score Breakdown:</span>
-              <div className='flex flex-col gap-2 text-2xl'>
-                <span>{correctGuessedWords.length} {correctGuessedWords.length !== 1 ? 'words' : 'word'} out of {possibleWords.length} ({(100 * correctGuessedWords.length / possibleWords.length).toFixed(2)}%).</span>
-                <span>{incorrectGuessedWords.length} incorrect words.</span>
-                <span>{score} allowance left.</span>
+            <div className='cursor-pointer pb-4  text-white flex flex-col justify-center items-center'>
+              <div className='flex flex-col justify-center items-center'>
+                <span className={`text-4xl ${arima.className} tracking-wide py-4 serif uppercase`}>Time's up!</span>
+                <span className="text-2xl py-4 tracking-wide uppercase font-serif">Final Score:</span>
+                <span className='text-7xl'>{correctGuessedWords.length}</span>
+                <NewGame />
               </div>
             </div>
-            <NewGame />
           </>
         }
 
