@@ -68,7 +68,7 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
       submitData()
     }
 
-  }, [timer, dispatch])
+  }, [timer, dispatch, score])
 
 
 

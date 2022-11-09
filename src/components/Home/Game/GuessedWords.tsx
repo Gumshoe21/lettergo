@@ -29,7 +29,7 @@ const GuessedWords = () => {
       {/* Correct guesses */}
       <div className='flex content-start items-center justify-center flex-wrap gap-1'>
         {isActive && correctGuessedWords.map(word =>
-          <Word correct={true}>{word}</Word>
+          <Word key={word} correct={true}>{word}</Word>
 
         )}
 
@@ -37,7 +37,7 @@ const GuessedWords = () => {
       {/* Incorrect guesses */}
       <div className='flex content-start items-center justify-center flex-wrap gap-1'>
         {isActive && incorrectGuessedWords.map(word =>
-          <Word correct={false}>{word}</Word>
+          <Word key={word} correct={false}>{word}</Word>
         )}
       </div>
     </div>
