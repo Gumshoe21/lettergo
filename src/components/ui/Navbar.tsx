@@ -1,8 +1,4 @@
-import type { NextPage } from 'next';
 import React, { useState } from 'react'
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import Image from 'next/image'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
@@ -11,7 +7,7 @@ const Navbar: React.FC = () => {
   const router = useRouter()
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
-  const { data: session, status } = useSession();
+  const { data: session, } = useSession();
   const [showNav, setShowNav] = useState(false)
 
   const handleShowNav = () => {

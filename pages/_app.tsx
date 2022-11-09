@@ -4,13 +4,13 @@ import 'tailwindcss/tailwind.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head'
 import Navbar from '@ui/Navbar'
-import { wrapper, makeStore } from '@store/index'
+import { wrapper, } from '@store/index'
 import { Provider } from 'react-redux';
 import { SessionProvider } from 'next-auth/react';
 
 
 const MyApp: FC<AppProps> = ({ Component, pageProps, ...rest }: AppProps) => {
-  const { store, props } = wrapper.useWrappedStore(rest);
+  const { store, } = wrapper.useWrappedStore(rest);
   return (
 
     <SessionProvider session={pageProps.session}>

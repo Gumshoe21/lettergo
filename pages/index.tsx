@@ -8,7 +8,7 @@ import React, { FC, useCallback, useEffect, useRef } from 'react';
 import 'tailwindcss/tailwind.css';
 import type { AppProps } from 'next/app';
 import { Provider, useSelector } from 'react-redux';
-import { setIsActive, selectTimer, setTimer, selectIsOver, selectScore, selectCorrectGuessedWords, selectIncorrectGuessedWords, selectPossibleWords, selectIsActiveState, setIsOver } from '@slices/gameSlice'
+import { setIsActive, selectTimer, setTimer, selectIsOver, selectScore, selectCorrectGuessedWords, selectIsActiveState, setIsOver } from '@slices/gameSlice'
 import { useDispatch } from 'react-redux';
 
 const arima = Arima({ subsets: ['latin'] })

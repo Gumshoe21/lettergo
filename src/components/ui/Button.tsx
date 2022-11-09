@@ -2,7 +2,8 @@ import { ReactNode } from 'react'
 
 export interface Props {
   type?: "button" | "submit"
-  children: ReactNode
+  children: ReactNode,
+  disabled: boolean
 }
 const Button = ({ type = "button", children, ...props }: Props) => {
   return (

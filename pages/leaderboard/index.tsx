@@ -21,7 +21,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const Leaderboard = (props) => {
+const Leaderboard = (props: any) => {
   return (
     <div className="px-8 sm:px-48 lg:px-96 max-w-7xl mx-auto">
       <div className="mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 rounded-lg">
@@ -33,7 +33,7 @@ const Leaderboard = (props) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-500 bg-gray-800">
-            {props.games.map(g => (
+            {props.games.map((g: any) => (
               <tr key={g}>
                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6"><div className='flex gap-2 items-center'><Image alt='Player avatar.' className='inline' src={`${g.player.image}`} width='48' height='48' /><span className='font-mono text-md'>{g.player.name}</span></div></td>
                 <td className="whitespace-nowrap px-5 py-4 text-right text-sm text-white sm:table-cell">{g.score}</td>
