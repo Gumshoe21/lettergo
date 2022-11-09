@@ -1,18 +1,18 @@
 import { getSession } from 'next-auth/react';
 import prisma from '@lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 // POST /api/post
 // Required fields in body: title
 // Optional fields in body: content
-export default async function handle(req, res) {
+export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const { score } = req.body;
 
   const session = await getSession({ req });
   const result = await prisma.game.create({
     data: {
       score: score,
-      player: { connect: { email: session?.user?.email } },
+      player: { connect: { email: session?.user?.email as string } },
     },
   });
   res.json(result);

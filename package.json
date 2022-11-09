@@ -15,6 +15,7 @@
 		"@next/font": "^13.0.1",
 		"@prisma/client": "^4.5.0",
 		"@reduxjs/toolkit": "^1.8.6",
+		"@types/node-fetch": "^2.6.2",
 		"lodash": "^4.17.21",
 		"next": "^13.0.0",
 		"next-auth": "^4.16.4",
