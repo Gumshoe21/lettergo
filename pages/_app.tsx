@@ -6,10 +6,10 @@ import Head from 'next/head'
 import Navbar from '@ui/Navbar'
 import { wrapper, makeStore } from '@store/index'
 import { Provider } from 'react-redux';
-import { SessionProvider, Session } from 'next-auth/react';
+import { SessionProvider } from 'next-auth/react';
 
 
-const MyApp: FC<AppProps> = ({ Component, pageProps, ...rest }: AppProps<{ session: Session; }>) => {
+const MyApp: FC<AppProps> = ({ Component, pageProps, ...rest }: AppProps) => {
   const { store, props } = wrapper.useWrappedStore(rest);
   return (
 
