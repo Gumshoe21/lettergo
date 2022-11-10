@@ -1,10 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectIsActiveState,
-  setIsActive,
   setActiveGameStates,
   selectIsOver,
-  setIsOver,
   GameState
 } from '@slices/gameSlice'
 import { englishWords } from '@utils/englishWords'
@@ -89,7 +87,7 @@ const NewGame = () => {
         <div className={`flex flex-row ${isActive ? 'justify-between' : 'justify-center'}`}>
           <div className='flex items-center justify-center text-center px-4 py-4'>
             <span
-              className={` cursor-pointer font-semibold text-white flex flex-row py-3 px-3  rounded-r-md rounded-l-md bg-primary-600  hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl ${isActive ? 'disabled' : ''}`}
+              className={`cursor-pointer font:inherit text-white flex flex-row p-6 rounded-r-md rounded-l-md bg-primary-600 hover:bg-white hover:text-primary-900 hover:-translate-y-0.5 hover:transition-all hover:drop-shadow-xl ${isActive ? 'disabled' : ''}`}
               onClick={!isActive && activateGame}
             >
               {!isActive && !isOver && 'New Game'}

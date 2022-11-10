@@ -1,6 +1,7 @@
 import prisma from '@lib/prisma'
 import { GetStaticProps } from 'next';
 import Image from 'next/image'
+
 export const getStaticProps: GetStaticProps = async () => {
   // Select all games and sort by descending order with distinct users. 
   // Effectively yields only the highest scores from each user, forming a leaderboard.
@@ -20,8 +21,20 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   };
 };
+export type GameProps = {
+  id: string;
+  score: number;
+  player: {
+    name: string;
+    email: string;
+    image: string;
+  } | null;
+}
 
-const Leaderboard = (props: any) => {
+type Props = {
+  games: GameProps[]
+}
+const Leaderboard: React.FC<Props> = ({ games }) => {
   return (
     <div className="px-8 sm:px-48 lg:px-96 max-w-7xl mx-auto">
       <div className="mx-4 mt-8 overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:-mx-6 md:mx-0 rounded-lg">
@@ -33,7 +46,7 @@ const Leaderboard = (props: any) => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-500 bg-gray-800">
-            {props.games.map((g: any) => (
+            {games.map((g: any) => (
               <tr key={g}>
                 <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-6"><div className='flex gap-2 items-center'><Image alt='Player avatar.' className='inline' src={`${g.player.image}`} width='48' height='48' /><span className='font-mono text-md'>{g.player.name}</span></div></td>
                 <td className="whitespace-nowrap px-5 py-4 text-right text-sm text-white sm:table-cell">{g.score}</td>

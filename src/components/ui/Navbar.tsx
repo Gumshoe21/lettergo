@@ -2,12 +2,15 @@ import React, { useState } from 'react'
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { signOut, useSession } from 'next-auth/react';
+import { Righteous } from '@next/font/google';
+
+const righteous = Righteous({ weight: '400' })
 
 const Navbar: React.FC = () => {
   const router = useRouter()
   const isActive: (pathname: string) => boolean = (pathname) =>
     router.pathname === pathname;
-  const { data: session, } = useSession();
+  const { data: session } = useSession();
   const [showNav, setShowNav] = useState(false)
 
   const handleShowNav = () => {
@@ -16,8 +19,8 @@ const Navbar: React.FC = () => {
 
   return (
     <>
-      <nav className="bg-white self-stretch px-2 sm:px-4 py-2.5 rounded dark:bg-neutral-800 border-t-[rgb(255,255,255,0.40)] border-b-[rgb(255,255,255,0.40)] border-[1px] border-r-current border-l-current ">
-        <div className="container flex flex-wrap justify-between items-stretch max-w-xl mx-auto gap-4">
+      <nav className="bg-white self-stretch px-2 sm:px-4  rounded dark:bg-neutral-800  border-b-[#3a3a3c] border-b-[1px]  border-r-current border-l-current ">
+        <div className="flex flex-wrap justify-between items-stretch  gap-4">
           {/* main content */}
 
           {/* Company name plus svg, left side of nav */}
@@ -26,7 +29,7 @@ const Navbar: React.FC = () => {
 
             <Image src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="LetterGo Logo" width='1' height='1' />
             */}
-            <span className="font-serif self-center text-2xl whitespace-nowrap dark:text-white">
+            <span className={`${righteous.className} text-primary-400 self-center text-2xl whitespace-nowrap `}>
               LetterGo
             </span>
           </Link>

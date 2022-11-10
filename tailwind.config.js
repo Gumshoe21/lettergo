@@ -1,5 +1,4 @@
 /** @type {import('tailwindcss').Config} */
-const defaultTheme = 'tailwindcss/defaultTheme';
 const colors = require('tailwindcss/colors');
 
 const brandColor = colors.green;
@@ -37,7 +36,8 @@ module.exports = {
       },
       animation: {
         fadeIn: 'fadeIn 1s ease-in-out'
-      }
+      },
     }
-  }
+  },
+
 };

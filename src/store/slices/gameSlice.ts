@@ -31,7 +31,7 @@ const initialState: GameState = {
   correctGuessedWords: [],
   incorrectGuessedWords: [],
   wordCountPerLetterLength: {},
-  timer: 10
+  timer: 20
 };
 
 export const gameSlice = createSlice({
@@ -65,9 +65,9 @@ export const gameSlice = createSlice({
       state.incorrectGuessedWords = [];
       state.isActive = true;
       state.alert = '';
-      state.isOver = false;
+      state.isOver = true;
       state.score = 0;
-      state.timer = 10;
+      state.timer = 20;
     },
     setScore(state, action) {
       state.score = action.payload;

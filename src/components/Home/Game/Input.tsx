@@ -93,16 +93,16 @@ const Input = () => {
       }
 
       dispatch(setRandomLetters(randomLettersCopy))
-      setConsonants(alphabet => ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z']);
+      setConsonants(consonants => ['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z']);
       setInputValue('')
       dispatch(setTimer(timer + 5))
 
     }
   }
 
-  const handleBackspace = () => {
+  const handleBackspace = (_e: React.MouseEvent<SVGSVGElement>) => {
     if (inputValue.length > 0) {
-      setInputValue(inputValue.substr(0, inputValue.length - 1))
+      setInputValue(inputValue.substring(0, inputValue.length - 1))
     }
   }
 
@@ -110,7 +110,7 @@ const Input = () => {
     <>
       <form onSubmit={handleOnSubmit}>
         <div className="flex flex-row text-center justify-around gap-2 items-center py-4 px-4">
-          <svg onClick={(e: React.MouseEvent<SVGSVGElement>) => handleBackspace()} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" className="w-12 h-12 cursor-pointer">
+          <svg onClick={(e: React.MouseEvent<SVGSVGElement>) => handleBackspace(e)} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="white" className="w-12 h-12 cursor-pointer">
             <path fillRule="evenodd" d="M7.22 3.22A.75.75 0 017.75 3h9A2.25 2.25 0 0119 5.25v9.5A2.25 2.25 0 0116.75 17h-9a.75.75 0 01-.53-.22L.97 10.53a.75.75 0 010-1.06l6.25-6.25zm3.06 4a.75.75 0 10-1.06 1.06L10.94 10l-1.72 1.72a.75.75 0 101.06 1.06L12 11.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L12 8.94l-1.72-1.72z" clipRule="evenodd" />
           </svg>
           <input

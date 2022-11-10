@@ -2,7 +2,7 @@ import Container from '@game/Container';
 import Input from '@game/Input';
 import NewGame from '@game/NewGame';
 import WelcomeModal from '@game/WelcomeModal';
-import { Arima } from '@next/font/google';
+import { Comfortaa } from '@next/font/google';
 import { wrapper } from '@store/index'
 import React, { FC, useCallback, useEffect, useRef } from 'react';
 import 'tailwindcss/tailwind.css';
@@ -11,7 +11,7 @@ import { Provider, useSelector } from 'react-redux';
 import { setIsActive, selectTimer, setTimer, selectIsOver, selectScore, selectCorrectGuessedWords, selectIsActiveState, setIsOver } from '@slices/gameSlice'
 import { useDispatch } from 'react-redux';
 
-const arima = Arima({ subsets: ['latin'] })
+const comfortaa = Comfortaa({ weight: '700', subsets: ['latin'] })
 
 const Home: FC<AppProps> = ({ Component, ...rest }) => {
   const isOver = useSelector(selectIsOver)
@@ -85,11 +85,11 @@ const Home: FC<AppProps> = ({ Component, ...rest }) => {
         {
           isOver &&
           <>
-            <div className='cursor-pointer pb-4 text-white flex flex-col justify-center items-center'>
-              <div className='flex flex-col justify-center items-center'>
-                <span className={`text-4xl ${arima.className} tracking-wide py-4 serif uppercase`}>Time&apos;s up!</span>
-                <span className="text-2xl py-4 tracking-wide uppercase font-serif">Final Score:</span>
-                <span className='text-7xl'>{correctGuessedWords.length}</span>
+            <div className='cursor-pointer pb-4 text-white uppercase bold flex flex-col justify-center items-center'>
+              <div className={`flex flex-col justify-center ${comfortaa.className} items-center`}>
+                <span className={`text-4xl mb-12 mt-2 tracking-wide serif `}>Time&apos;s Up!</span>
+                <span className="text-xl mb-8 tracking-wide">Final Score:</span>
+                <span className='text-6xl mb-8'>{correctGuessedWords.length}</span>
                 <NewGame />
               </div>
             </div>

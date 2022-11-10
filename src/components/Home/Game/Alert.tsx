@@ -3,7 +3,6 @@ import {
   setAlert,
   selectCorrectGuessedWords,
   selectPossibleWords,
-  selectScore,
   selectIsActiveState
 } from '@slices/gameSlice'
 
