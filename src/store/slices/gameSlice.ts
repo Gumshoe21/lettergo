@@ -65,7 +65,7 @@ export const gameSlice = createSlice({
       state.incorrectGuessedWords = [];
       state.isActive = true;
       state.alert = '';
-      state.isOver = true;
+      state.isOver = false;
       state.score = 0;
       state.timer = 20;
     },

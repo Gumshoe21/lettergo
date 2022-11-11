@@ -22,19 +22,19 @@ import { useDispatch } from 'react-redux';
 import _ from 'lodash'
 
 const Input = () => {
-  const correctGuessedWords = useSelector(selectCorrectGuessedWords)
+  const correctGuessedWords: string[] = useSelector(selectCorrectGuessedWords)
   const possibleWords: string[] = useSelector(selectPossibleWords)
-  const score = useSelector(selectScore)
+  const score: number = useSelector(selectScore)
   const dispatch = useDispatch()
   const inputRef = useRef<HTMLInputElement>(null);
-  const isActiveState = useSelector(selectIsActiveState);
-  const randomLetters = useSelector(selectRandomLetters);
-  const timer = useSelector(selectTimer);
+  const isActiveState: boolean = useSelector(selectIsActiveState);
+  const randomLetters: string[] = useSelector(selectRandomLetters);
+  const timer: number = useSelector(selectTimer);
+  const isOver: boolean = useSelector(selectIsOver);
 
-  const isOver = useSelector(selectIsOver);
-  const [inputValue, setInputValue] = useState('');
-  let [vowels, setVowels] = useState(['A', 'E', 'I', 'O', 'U'])
-  let [consonants, setConsonants] = useState(['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'])
+  const [inputValue, setInputValue] = useState<string>('');
+  const [vowels, setVowels] = useState<string[]>(['A', 'E', 'I', 'O', 'U'])
+  const [consonants, setConsonants] = useState<string[]>(['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'])
 
 
   const handleInputChange = (e: any) => {
