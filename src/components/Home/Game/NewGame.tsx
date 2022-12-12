@@ -66,6 +66,7 @@ const NewGame = () => {
     }
 
     let wordCountPerLetterLength: keyNumVal = {}
+
     for (let i = 0; i < possibleWords.length; i++) {
       wordCountPerLetterLength[possibleWords[i].length] ||= 0;
       wordCountPerLetterLength[possibleWords[i].length] += 1

@@ -1,22 +1,22 @@
 import { HYDRATE } from 'next-redux-wrapper'
-import { bindActionCreators, createSlice } from '@reduxjs/toolkit';
-import { AppState } from '../index';
+import { bindActionCreators, createSlice } from '@reduxjs/toolkit'
+import { AppState } from '../index'
 
 export interface GameState {
-  isActive: boolean;
-  isOver: boolean;
-  randomLetters: string[];
-  possibleWords: string[];
+  isActive: boolean
+  isOver: boolean
+  randomLetters: string[]
+  possibleWords: string[]
   wordsPerLetterLength: {
-    [key: string]: string[];
-  };
+    [key: string]: string[]
+  }
   wordCountPerLetterLength: {
     [key: number]: number
   }
-  score: number;
-  alert: string;
-  correctGuessedWords: string[],
-  incorrectGuessedWords: string[],
+  score: number
+  alert: string
+  correctGuessedWords: string[]
+  incorrectGuessedWords: string[]
   timer: number
 }
 
@@ -27,50 +27,50 @@ const initialState: GameState = {
   possibleWords: [],
   wordsPerLetterLength: {},
   score: 0,
-  alert: "",
+  alert: '',
   correctGuessedWords: [],
   incorrectGuessedWords: [],
   wordCountPerLetterLength: {},
-  timer: 20
-};
+  timer: 20,
+}
 
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
     setIsActive(state, action) {
-      state.isActive = action.payload;
+      state.isActive = action.payload
     },
     setIsOver(state, action) {
-      state.isOver = action.payload;
+      state.isOver = action.payload
     },
     setRandomLetters(state, action) {
-      state.randomLetters = action.payload;
+      state.randomLetters = action.payload
     },
     setPossibleWords(state, action) {
-      state.possibleWords = action.payload;
+      state.possibleWords = action.payload
     },
     setWordsPerLetterLength(state, action) {
-      state.wordsPerLetterLength = action.payload;
+      state.wordsPerLetterLength = action.payload
     },
     setWordCountPerLetterLength(state, action) {
-      state.wordCountPerLetterLength[action.payload] -= 1;
+      state.wordCountPerLetterLength[action.payload] -= 1
     },
     setActiveGameStates(state, action) {
-      state.randomLetters = action.payload.randomLetters;
-      state.possibleWords = action.payload.possibleWords;
-      state.wordsPerLetterLength = action.payload.wordsPerLetterLength;
-      state.wordCountPerLetterLength = action.payload.wordCountPerLetterLength;
-      state.correctGuessedWords = [];
-      state.incorrectGuessedWords = [];
-      state.isActive = true;
-      state.alert = '';
-      state.isOver = true;
-      state.score = 0;
-      state.timer = 20;
+      state.randomLetters = action.payload.randomLetters
+      state.possibleWords = action.payload.possibleWords
+      state.wordsPerLetterLength = action.payload.wordsPerLetterLength
+      state.wordCountPerLetterLength = action.payload.wordCountPerLetterLength
+      state.correctGuessedWords = []
+      state.incorrectGuessedWords = []
+      state.isActive = true
+      state.alert = ''
+      state.isOver = false 
+      state.score = 0
+      state.timer = 20
     },
     setScore(state, action) {
-      state.score = action.payload;
+      state.score = action.payload
     },
     setCorrectGuessedWords(state, action) {
       state.correctGuessedWords.push(action.payload)
@@ -79,11 +79,11 @@ export const gameSlice = createSlice({
       state.incorrectGuessedWords.push(action.payload)
     },
     setAlert(state, action) {
-      state.alert = action.payload;
+      state.alert = action.payload
     },
     setTimer(state, action) {
-      state.timer = action.payload;
-    }
+      state.timer = action.payload
+    },
   },
   extraReducers: {
     // the HYDRATE fucnction will be called when:
@@ -94,11 +94,11 @@ export const gameSlice = createSlice({
     [HYDRATE]: (state, action) => {
       return {
         ...state,
-        ...action.payload.game
-      };
-    }
-  }
-});
+        ...action.payload.game,
+      }
+    },
+  },
+})
 
 export const {
   setIsActive,
@@ -112,19 +112,19 @@ export const {
   setCorrectGuessedWords,
   setIncorrectGuessedWords,
   setAlert,
-  setTimer
-} = gameSlice.actions;
+  setTimer,
+} = gameSlice.actions
 
-export const selectIsActiveState = (state: AppState) => state.game.isActive;
-export const selectIsOver = (state: AppState) => state.game.isOver;
-export const selectRandomLetters = (state: AppState) => state.game.randomLetters;
-export const selectPossibleWords = (state: AppState) => state.game.possibleWords;
-export const selectWordsPerLetterLength = (state: AppState) => state.game.wordsPerLetterLength;
+export const selectIsActiveState = (state: AppState) => state.game.isActive
+export const selectIsOver = (state: AppState) => state.game.isOver
+export const selectRandomLetters = (state: AppState) => state.game.randomLetters
+export const selectPossibleWords = (state: AppState) => state.game.possibleWords
+export const selectWordsPerLetterLength = (state: AppState) => state.game.wordsPerLetterLength
 export const selectWordCountPerLetterLength = (state: AppState) => state.game.wordCountPerLetterLength
-export const selectScore = (state: AppState) => state.game.score;
-export const selectAlert = (state: AppState) => state.game.alert;
-export const selectCorrectGuessedWords = (state: AppState) => state.game.correctGuessedWords;
-export const selectIncorrectGuessedWords = (state: AppState) => state.game.incorrectGuessedWords;
-export const selectTimer = (state: AppState) => state.game.timer;
+export const selectScore = (state: AppState) => state.game.score
+export const selectAlert = (state: AppState) => state.game.alert
+export const selectCorrectGuessedWords = (state: AppState) => state.game.correctGuessedWords
+export const selectIncorrectGuessedWords = (state: AppState) => state.game.incorrectGuessedWords
+export const selectTimer = (state: AppState) => state.game.timer
 
-export default gameSlice.reducer;
+export default gameSlice.reducer
