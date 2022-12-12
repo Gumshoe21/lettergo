@@ -35,6 +35,7 @@ const Input = () => {
   const [inputValue, setInputValue] = useState('')
   let [vowels, setVowels] = useState(['A', 'E', 'I', 'O', 'U'])
   let [consonants, setConsonants] = useState(['B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'])
+  const [inputRed, setInputRed] = useState(false)
 
   const handleInputChange = (e: any) => {
     const randomLettersPattern = new RegExp('^(?:([' + `${randomLetters.join('').toUpperCase()}` + '])(?!.*\\1))*$')
@@ -66,8 +67,14 @@ const Input = () => {
     e.preventDefault()
     if (!englishWords.includes(inputRef.current?.value.toLowerCase() as string)) {
       setInputValue('')
-      dispatch(setTimer(timer - 5))
-      return;
+      // To avoid negative timer values.
+      timer >= 5 ? dispatch(setTimer(timer - 5)) : dispatch(setTimer(timer - timer))
+      // Sets a red border on the input field for .5 seconds then unsets it.
+      setInputRed(true)
+      setTimeout(() => {
+        setInputRed(false)
+      }, 500)
+      return
     }
 
     let wordLength: number | undefined = inputRef.current?.value.length
@@ -148,7 +155,9 @@ const Input = () => {
             disabled={!isActiveState}
             ref={inputRef}
             value={inputValue}
-            className='font-serif tracking-tighest py-1 text-center rounded-lg shadow-sm focus:ring-[5px] text-1xl md:text-2xl uppercase outline-none'
+            className={`font-serif tracking-tighest py-1 text-center rounded-lg shadow-sm focus:ring-[5px] text-1xl md:text-2xl uppercase outline-none  ${
+              inputRed ? 'border-[#FF3131] border-2' : ''
+            }`}
             onChange={(e) => handleInputChange(e)}
           />
 
@@ -165,7 +174,7 @@ const Input = () => {
               <div className='flex flex-col w-full' key={letter}>
                 <button
                   key={letter}
-                  className={`transition-all duration-500 hover:animate-[letterFadeIn_1s_ease-in-out] text-white   place-content-center min-h-[100px] font-serif text-5xl ${
+                  className={`transition-all duration-500 hover:animate-[letterFadeIn_1s_ease-in-out] text-white place-content-center min-h-[100px] font-serif text-5xl ${
                     inputValue.includes(letter)
                       ? 'border-[2px] border-green-600 hover:border-green-500'
                       : 'border-[2px] border-[rgb(255,255,255,0.3)] hover:border-[rgb(255,255,255,0.9)]'
