@@ -27,6 +27,6 @@ I always wanted to create a browser video game with flashy graphics and cool gam
 
 ## Hosting Services
 
-- [Vercl](https://www.vercel.com) (back-end & front-end)
+- [Vercel](https://www.vercel.com) (back-end & front-end)
 - [Render](https://www.render.com) (database)
 
